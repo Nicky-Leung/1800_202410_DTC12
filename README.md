@@ -6,9 +6,13 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
+<<<<<<< HEAD
 * My name is Jarell Vicencio. A01397772 I'm new to programming.
 * Nick Thucydides: nick-thucydides : A01386246
 * ...
+=======
+* My name is Nicky! I am excited to start the project!
+>>>>>>> f3231e64f255de2df6311130dfee312d8122ac4a
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
