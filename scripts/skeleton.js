@@ -8,4 +8,4 @@ function loadSkeleton() {
 
     });
 }
-loadSkeleton(); 
+loadSkeleton();
