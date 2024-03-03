@@ -11,6 +11,14 @@
 
   <!-- Google Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -53,6 +61,7 @@
 </head>
 
 <body>
+  <nav id="navbarPlaceholder"></nav>
   <div class="container-fluid">
     <div class="item">
       <h2>Supreme Gucci Mane Tee</h2>
@@ -66,6 +75,12 @@
         tempus metus fringilla.</p>
     </div>
   </div>
+  <footer id="footerPlaceholder"></footer>
+
+  <script src="./scripts/firebaseAPI_DTC12.js"></script>
+    <script src="./scripts/skeleton.js"></script>
+    <script src="./scripts/script.js"></script>
+    <script src="./scripts/authentication.js"></script>
 </body>
 
 </html>
