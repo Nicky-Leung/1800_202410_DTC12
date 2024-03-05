@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistics</title>
+</head>
+
+<body>
+  <h2>Statistics</h2>
+  <div id="stats"></div>
+
+  <script>
+    fetch('scripts/data.csv')
+      .then(response => response.text())
+      .then(data => {
+
+        var rows = data.split('\n');
+        var newData = [];
+        for (var i = 1; i < rows.length; i++) {
+          var cols = rows[i].split(',');
+          newData.push({
+            item_name: cols[0],
+            price_sold: parseFloat(cols[1]),
+            date: cols[2],
+            condition: cols[3],
+            other_info: cols[4]
+          });
+        }
+
+
+        var newPrices = newData.filter(item => item.condition === 'New').map(item => item.price_sold);
+        var usedPrices = newData.filter(item => item.condition === 'Used').map(item => item.price_sold);
+        var allPrices = newData.map(item => item.price_sold);
+
+        var newMinPrice = Math.min(...newPrices);
+        var newMaxPrice = Math.max(...newPrices);
+        var newAvgPrice = newPrices.reduce((acc, val) => acc + val, 0) / newPrices.length;
+
+        var usedMinPrice = Math.min(...usedPrices);
+        var usedMaxPrice = Math.max(...usedPrices);
+        var usedAvgPrice = usedPrices.reduce((acc, val) => acc + val, 0) / usedPrices.length;
+
+        var allMinPrice = Math.min(...allPrices);
+        var allMaxPrice = Math.max(...allPrices);
+        var allAvgPrice = allPrices.reduce((acc, val) => acc + val, 0) / allPrices.length;
+        var statsDiv = document.getElementById('stats');
+        statsDiv.innerHTML += "<p>New - Min Price: " + newMinPrice + ", Max Price: " + newMaxPrice + ", Avg Price: " + newAvgPrice + "</p>";
+        statsDiv.innerHTML += "<p>Used - Min Price: " + usedMinPrice + ", Max Price: " + usedMaxPrice + ", Avg Price: " + usedAvgPrice + "</p>";
+        statsDiv.innerHTML += "<p>All - Min Price: " + allMinPrice + ", Max Price: " + allMaxPrice + ", Avg Price: " + allAvgPrice + "</p>";
+      });
+  </script>
+</body>
+
+</html>
