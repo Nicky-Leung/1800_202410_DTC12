@@ -5,52 +5,103 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Statistics</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-color: #D3C7A1;
+      color: #252220;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #7FAFC0;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #7FAFC0;
+    }
+
+    th {
+      background-color: #D49D40;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-  <h2>Statistics</h2>
-  <div id="stats"></div>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D49D40;">
+    <div class="container-fluid">
+      <a class="navbar-brand font-weight-bold" href="main.html">
+        <img src="images/low_quality_midas_logo.png" alt="">
+        Midas</a>
+      <form class="flex">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-dark my-2 my-sm-0" style="background-color:#7FAFC0;"
+          type="submit">Search</button>
+      </form>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" href="../aboutus.html">About Us</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <a class="btn btn-outline-warning" href="../login.html">Login</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h2 class="text-center">Statistics</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Average Price Sold</th>
+          <th>Lowest Price</th>
+          <th>Highest Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>All Items</td>
+          <td>110.0</td>
+          <td>80</td>
+          <td>150</td>
+        </tr>
+        <tr>
+          <td>New Items</td>
+          <td>90.0</td>
+          <td>80</td>
+          <td>100</td>
+        </tr>
+        <tr>
+          <td>Used Items</td>
+          <td>150.0</td>
+          <td>150</td>
+          <td>150</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <footer id="footerPlaceholder"></footer>
 
-  <script>
-    fetch('scripts/data.csv')
-      .then(response => response.text())
-      .then(data => {
-
-        var rows = data.split('\n');
-        var newData = [];
-        for (var i = 1; i < rows.length; i++) {
-          var cols = rows[i].split(',');
-          newData.push({
-            item_name: cols[0],
-            price_sold: parseFloat(cols[1]),
-            date: cols[2],
-            condition: cols[3],
-            other_info: cols[4]
-          });
-        }
-
-
-        var newPrices = newData.filter(item => item.condition === 'New').map(item => item.price_sold);
-        var usedPrices = newData.filter(item => item.condition === 'Used').map(item => item.price_sold);
-        var allPrices = newData.map(item => item.price_sold);
-
-        var newMinPrice = Math.min(...newPrices);
-        var newMaxPrice = Math.max(...newPrices);
-        var newAvgPrice = newPrices.reduce((acc, val) => acc + val, 0) / newPrices.length;
-
-        var usedMinPrice = Math.min(...usedPrices);
-        var usedMaxPrice = Math.max(...usedPrices);
-        var usedAvgPrice = usedPrices.reduce((acc, val) => acc + val, 0) / usedPrices.length;
-
-        var allMinPrice = Math.min(...allPrices);
-        var allMaxPrice = Math.max(...allPrices);
-        var allAvgPrice = allPrices.reduce((acc, val) => acc + val, 0) / allPrices.length;
-        var statsDiv = document.getElementById('stats');
-        statsDiv.innerHTML += "<p>New - Min Price: " + newMinPrice + ", Max Price: " + newMaxPrice + ", Avg Price: " + newAvgPrice + "</p>";
-        statsDiv.innerHTML += "<p>Used - Min Price: " + usedMinPrice + ", Max Price: " + usedMaxPrice + ", Avg Price: " + usedAvgPrice + "</p>";
-        statsDiv.innerHTML += "<p>All - Min Price: " + allMinPrice + ", Max Price: " + allMaxPrice + ", Avg Price: " + allAvgPrice + "</p>";
-      });
-  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 
 </html>
