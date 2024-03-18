@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-  <title>About page</title>
+  <title>My BCIT Project</title>
+  <meta name="comp1800 template" content="My 1800 App">
 
   <!------------------------>
   <!-- Required meta tags -->
@@ -19,46 +20,57 @@
     integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
 
+  <!-------------------------------------------------------->
+  <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
+  <!-------------------------------------------------------->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
+  <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
   <!-------------------------------------------->
   <!-- Other libraries and styles of your own -->
   <!-------------------------------------------->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="./styles/style.css">
+
 </head>
 
-<body>
+<body style="background-color:#D3C7A1 ;">
 
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #D49D40;">
-    <div class="container-fluid">
-      <a class="navbar-brand font-weight-bold" href="main.html">
-        <img src="images/low_quality_midas_logo.png" alt="">
-        Midas</a>
-      <form class="flex">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-dark my-2 my-sm-0" style="background-color:#7FAFC0;"
-          type="submit">Search</button>
-      </form>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link" href="../aboutus.html">About Us</a>
-          </li>
-        </ul>
-        <div class="d-flex">
-          <a class="btn btn-outline-warning" href="../login.html">Login</a>
-        </div>
-      </div>
-    </div>
-  </nav>
+  <!-- navbar -->
+  <nav id="navbarPlaceholder"></nav>
 
-
-  <div class="container">
+  <!-- main -->
+  <a href="main.html">
+    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="44"
+      height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M5 12l14 0" />
+      <path d="M5 12l4 4" />
+      <path d="M5 12l4 -4" />
+    </svg>
+    </svg>
+  </a>
+  <div class="container mt-5 ">
     <h1>About MIDAS</h1>
     <p>MIDAS is a web application developed by three COMP 1800 students in DTC-12 : Nicky, Jarell, and Nick. More
       revelant
       information will be included here later</p>
   </div>
+
+  <!-- footer -->
+  <footer id="footerPlaceholder"></footer>
+
+  <!-- scripts -->
+  <script src="./scripts/firebaseAPI_DTC12.js"></script>
+  <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/authentication.js"></script>
 
 </body>
 
