@@ -39,10 +39,11 @@
 
 </head>
 
-<body>
-
+<body style="background-color:#D3C7A1 ;">
+    <!--Can improve later ig-->
     <!-- navbar -->
     <nav id="navbarPlaceholder"></nav>
+
     <div class="d-flex justify-content-start mt-3">
         <a href="profile.html">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="44"
@@ -57,36 +58,40 @@
         </a>
 
     </div>
-
     <!-- main -->
-    <div class="container">
-
-
-        <h1>User Profile </h1>
-        <form>
-            <fieldset class="mb-3" id="personalInfoFields" disabled>
-                <div class="form-group py-5">
-                    <div id="profile-container">
-                        <img id="mypic-goes-here" src="" />
+    <div class="container p-5 rounded-3 mt-2 font-weight:400px">
+        <div class="row justify-content-center">
+            <div class="col-7 mt-4">
+                <h2 class="text-center mb-4">Add New Item</h2>
+                <!-- Item form -->
+                <form id="addItemForm">
+                    <div class="mb-3">
+                        <label for="itemName" class="form-label">Item Name</label>
+                        <input type="text" class="form-control" id="itemName" name="itemName"
+                            placeholder="Enter item name" required>
+                        <!--added required so its unsubmittable when unfilled-->
                     </div>
-                    <input id="mypic-input" type="file">
-                </div>
-                <div class="form-group">
-                    <label>Name</label>
-                    <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                    <label>Bio</label>
-                    <input type="text" id="schoolInput" class="form-control" placeholder="Enter your bio">
-                </div>
-            </fieldset>
-            <div class="d-flex justify-content-end mt-5">
-                <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
-                <span style="width: 10px"></span>
-                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+                    <div class="mb-3">
+                        <label for="itemPrice" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="itemPrice" name="itemPrice"
+                            placeholder="Enter price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="itemDescription" name="itemDescription" rows="3"
+                            placeholder="Enter item description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="itemImage" class="form-label">Upload Image</label>
+                        <input type="file" class="form-control" id="itemImage" name="itemImage" accept="image/*"
+                            required>
+                    </div>
+                    <button type="submit" class="btn" style="background-color: #d49d40;">Submit</button>
+                </form>
             </div>
-        </form>
+        </div>
     </div>
+
 
     <!-- footer -->
     <footer id="footerPlaceholder"></footer>
@@ -94,7 +99,7 @@
     <!-- scripts -->
     <script src="./scripts/firebaseAPI_DTC12.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/prof.js"></script>
+    <script src="./scripts/script.js"></script>
     <script src="./scripts/authentication.js"></script>
 
 </body>
