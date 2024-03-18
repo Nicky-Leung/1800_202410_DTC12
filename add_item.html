@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- login page -->
+
 <head>
     <title>My BCIT Project</title>
     <meta name="comp1800 template" content="My 1800 App">
@@ -18,7 +18,7 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-------------------------------------------------------->
     <!-- Firebase 8 Library related CSS, JS, JQuery go here -->
@@ -27,7 +27,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script> 
+    <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
     <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
@@ -40,31 +40,46 @@
 </head>
 
 <body>
-   
-    <!-- navbar -->
 
-    <nav id = "navbarPlaceholder"></nav>
+    <!-- navbar -->
+    <nav id="navbarPlaceholder"></nav>
 
     <!-- main -->
-    <br>
-    <br>
     <div class="container">
-      <h1>Welcome to Midas!</h1>
-  </div>
-  <br>
-  <br>
-  <br>  
-  <div id="firebaseui-auth-container"></div>
-  <div id="loader">Loading...</div>
 
+        <h1>User Profile </h1>
+        <form>
+            <fieldset class="mb-3" id="personalInfoFields" disabled>
+                <div class="form-group py-5">
+                    <div id="profile-container">
+                        <img id="mypic-goes-here" src="" />
+                    </div>
+                    <input id="mypic-input" type="file">
+                </div>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Bio</label>
+                    <input type="text" id="schoolInput" class="form-control" placeholder="Enter your bio">
+                </div>
+            </fieldset>
+            <div class="d-flex justify-content-end mt-5">
+                <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
+                <span style="width: 10px"></span>
+                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+            </div>
+        </form>
+    </div>
 
     <!-- footer -->
-  
+    <footer id="footerPlaceholder"></footer>
 
     <!-- scripts -->
     <script src="./scripts/firebaseAPI_DTC12.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/script.js"></script>
+    <script src="./scripts/prof.js"></script>
     <script src="./scripts/authentication.js"></script>
 
 </body>
