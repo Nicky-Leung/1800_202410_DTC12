@@ -43,20 +43,40 @@ function writeTechItemDB(max) {
 function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
    db.collection("items").get().then(items => {
-        items.forEach(doc => {
-            let name = doc.data().name;
-            let price = doc.data().price;
-            let description = doc.data().description;
-            let code = doc.data().code;
+            items.forEach(doc => {
+                let name = doc.data().name;
+                let price = doc.data().price;
+                let description = doc.data().description;
+                let code = doc.data().code;
 
-            title = document.getElementById('name')
-            title.innerHTML = name;
-            console.log(description);
-            price_card = document.getElementById('price')
-            price_card.innerHTML = 'Current Price: '+ price;
-            description_card = document.getElementById('description')
-            description_card.innerHTML = description;
-        });
+                card_container = document.getElementById("card-container");
+                card  = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<a href="item_page.html" class="text-decoration-none text-dark ">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col text-left-start">
+                                    <h1 id = 'name' class=>${name}</h5>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <h5 id = 'price' class="card-title">Current Price: ${price}</h5>
+                                </div>
+                                <image src="images/5137C009_EOSR7_RFS_18150.jpg" class="card-img-top col"
+                                    style="height:20vh; width:20vh">
+                                </image>
+                            </div>
+                        </div>
+                        <p id = "description" class="card-text">${description}</p>
+                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    </div>
+            </a>`
+                card_container.append(card)
+
+            });
+    
     });
 }
 
