@@ -49,6 +49,7 @@ function readTechItemDB() {
                 let description = doc.data().description;
                 let code = doc.data().code;
 
+                // create a new card for each doc in the database with unique price and name 
                 card_container = document.getElementById("card-container");
                 card  = document.createElement("div");
                 card.className = "card";
