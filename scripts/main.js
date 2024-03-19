@@ -54,10 +54,10 @@ function readTechItemDB() {
             card_container = document.getElementById("card-container");
             card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<div class="text-decoration-none text-dark ">
-                <div class="card mb-3">
+            card.innerHTML = `<div class="text-decoration-none text-dark" >
+                <div class="card mb-3" >
                     <div class="card-body">
-                        <div class="container">
+                        <div class="container" >
                             <div class="row">
                                 <div class="col text-left-start">
                                     <h1 id = 'name' class=>${name}</h5>
