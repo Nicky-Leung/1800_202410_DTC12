@@ -85,7 +85,7 @@ function readTechItemDB() {
                     <div class="item" id="item>"go
 
                         <h2>${name}</h2>
-                        <img style = "max-width:200px" src="${code}" alt="Item Image">
+                        <img style = "max-width:200px" src="images/${code}.jpg" alt="Item Image">
                     </div>
                     <div class="card" id="cardi">
                         <p>Price : 
