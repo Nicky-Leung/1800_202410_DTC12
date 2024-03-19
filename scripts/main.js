@@ -48,6 +48,7 @@ function readTechItemDB() {
             let price = doc.data().price;
             let description = doc.data().description;
             let code = doc.data().code;
+            console.log(code)
 
             // create a new card for each doc in the database with unique price and name 
             card_container = document.getElementById("card-container");
@@ -65,7 +66,7 @@ function readTechItemDB() {
                                         <br>
                                         <h5 id = 'price' class="card-title">Current Price: ${price}</h5>
                                 </div>
-                                <image src="images/5137C009_EOSR7_RFS_18150.jpg" class="card-img-top col"
+                                <image src="images/${code}.jpg" class="card-img-top col"
                                     style="height:20vh; width:20vh">
                                 </image>
                             </div>
@@ -81,10 +82,10 @@ function readTechItemDB() {
                 card.innerHTML = `
                     
                     <div class="container-fluid" id="item-information">
-                    <div class="item" id="item">
+                    <div class="item" id="item>"go
 
                         <h2>${name}</h2>
-                        <img style = "max-width:200px" src="images/gucci mane.jpg" alt="Item Image">
+                        <img style = "max-width:200px" src="${code}" alt="Item Image">
                     </div>
                     <div class="card" id="cardi">
                         <p>Price : 
