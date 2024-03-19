@@ -42,18 +42,18 @@ function writeTechItemDB(max) {
 
 function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
-   db.collection("items").get().then(items => {
-            items.forEach(doc => {
-                let name = doc.data().name;
-                let price = doc.data().price;
-                let description = doc.data().description;
-                let code = doc.data().code;
+    db.collection("items").get().then(items => {
+        items.forEach(doc => {
+            let name = doc.data().name;
+            let price = doc.data().price;
+            let description = doc.data().description;
+            let code = doc.data().code;
 
-                // create a new card for each doc in the database with unique price and name 
-                card_container = document.getElementById("card-container");
-                card  = document.createElement("div");
-                card.className = "card";
-                card.innerHTML = `<a href="item_page.html" class="text-decoration-none text-dark ">
+            // create a new card for each doc in the database with unique price and name 
+            card_container = document.getElementById("card-container");
+            card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `<div class="text-decoration-none text-dark ">
                 <div class="card mb-3">
                     <div class="card-body">
                         <div class="container">
@@ -73,12 +73,39 @@ function readTechItemDB() {
                         <p id = "description" class="card-text">${description}</p>
                         <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                     </div>
-            </a>`
+            </div>`
+
+        ;   
+            card.addEventListener('click', function () {
+                card_container.innerHTML = "";
+                card.innerHTML = `
+                    
+                    <div class="container-fluid" id="item-information">
+                    <div class="item" id="item">
+
+                        <h2>${name}</h2>
+                        <img style = "max-width:200px" src="images/gucci mane.jpg" alt="Item Image">
+                    </div>
+                    <div class="card" id="cardi">
+                        <p>Price : 
+                        ${price}<br> Condition: Used <br> Colour: Black
+                        </p>
+                        <p>${description}</p>
+                        <button onclick="showStats()" style="color:white; background-color: midnightblue;">Show Stats</button>
+
+
+                    </div>
+                    </div>`
                 card_container.append(card)
 
             });
-    
+            card_container.append(card)
+
+        })
     });
-}
+
+        
+    }
+
 
 readTechItemDB(); //call the function to read from the database
