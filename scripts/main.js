@@ -1,3 +1,5 @@
+
+
 function writeTechItemDB(max) {
 
 
@@ -149,6 +151,20 @@ function readFilteredTechItemDB(itemName) {
     });
 }
 
+
+function addTechfield() {
+    
+    var items = db.collection("items");
+    items.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+
+            doc.ref.update({
+                review: Math.ceil(Math.random() * 5),
+            });
+        });
+    }
+
+)};
 
 
 
