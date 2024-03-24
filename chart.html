@@ -58,28 +58,9 @@
     <script src="./scripts/script.js"></script>
     <script src="./scripts/authentication.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./scripts/chart.js"></script>
 
-    <script>
-
-        
-        const data = {
-            labels: ['1', '2', '3', '4', '5'],
-            datasets:[{
-                label: 'Price History',
-                data: localStorage.getItem('price_history').split(","),
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            }
-        ]};
-
-        new Chart(document.getElementById('chart'), {
-
-            type: 'line',
-            data: data,
-
-        });
-    </script>
+   
 
 
 
