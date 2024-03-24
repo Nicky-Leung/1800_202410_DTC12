@@ -49,6 +49,7 @@ function readTechItemDB() {
             let price = doc.data().price;
             let description = doc.data().description;
             let code = doc.data().code;
+            let price_history = doc.data().price_history;
             console.log(code)
 
             // create a new card for each doc in the database with unique price and name 
@@ -84,6 +85,7 @@ function readTechItemDB() {
                 localStorage.setItem('price', price);
                 localStorage.setItem('description', description);
                 localStorage.setItem('code', code);
+                localStorage.setItem('price_history', price_history);
                 window.location.href = 'item_page.html';
 
                 

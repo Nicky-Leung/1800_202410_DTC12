@@ -9,6 +9,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "chart.js": "^4.4.2",
     "ebay-oauth-nodejs-client": "^1.2.2",
     "init": "^0.1.2",
     "node-fetch": "^3.3.2"

@@ -25,7 +25,7 @@ function show_item() {
         ${price}<br> Condition: Used <br> Colour: Black
         </p>
         <p>${description}</p>
-        <button onclick="showStats()" style="color:white; background-color: midnightblue;">Show Stats</button>
+        <a href="chart.html">Show Stats</a>
 
 
     </div>
