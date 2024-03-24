@@ -34,6 +34,7 @@ function writeTechItemDB(max) {
             code: techname[i].replace(/\s/g, '').toLowerCase(), //remove spaces and convert to lowercase
             name: techname[i],
             price: values[i],
+            price_history: [values[i],values[i]*0.9, values[i]*1.1, values[i]*1.2, values[i] *1.3],
             description: "This is a description for " + techname[i],
             last_updated: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -78,26 +79,15 @@ function readTechItemDB() {
 
                 ;
             card.addEventListener('click', function () {
-                card_container.innerHTML = "";
-                card.innerHTML = `
-                    
-                    <div class="container-fluid" id="item-information">
-                    <div class="item" id="item>"go
+                
+                localStorage.setItem('name', name);
+                localStorage.setItem('price', price);
+                localStorage.setItem('description', description);
+                localStorage.setItem('code', code);
+                window.location.href = 'item_page.html';
 
-                        <h2>${name}</h2>
-                        <img style = "max-width:200px" src="images/${code}.jpg" alt="Item Image">
-                    </div>
-                    <div claass="card" id="cardi">
-                        <p>Price : 
-                        ${price}<br> Condition: Used <br> Colour: Black
-                        </p>
-                        <p>${description}</p>
-                        <button onclick="showStats()" style="color:white; background-color: midnightblue;">Show Stats</button>
-
-
-                    </div>
-                    </div>`
-                card_container.append(card)
+                
+              
 
             });
             card_container.append(card)
