@@ -1,5 +1,3 @@
-
-
 function writeTechItemDB(max) {
 
 

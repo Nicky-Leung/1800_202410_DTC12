@@ -17,3 +17,30 @@ new Chart(document.getElementById('chart'), {
 
 });
 
+const radardata = {
+    labels: ['User Review', 'Critic Review', 'Price', 'Popularity'],
+    datasets: [{
+        label: 'Review',
+        data: [4,3,2,4],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+    }
+    ]
+
+};
+
+
+new Chart(document.getElementById('radarchart'), {
+
+    type: 'radar',
+    data: radardata,
+    options: {
+        scales: {
+            r: {
+                beginAtZero: true,
+                max: 5
+            }
+        }
+    }
+});
