@@ -50,10 +50,7 @@ var uiConfig = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID,
   //   firebase.auth.PhoneAuthProvider.PROVIDER_ID
   ],
-  // Terms of service url.
-  tosUrl: '<your-tos-url>',
-  // Privacy policy url.
-  privacyPolicyUrl: '<your-privacy-policy-url>'
+
 };
 
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
