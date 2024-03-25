@@ -34,6 +34,7 @@ function writeTechItemDB(max) {
             code: techname[i].replace(/\s/g, '').toLowerCase(), //remove spaces and convert to lowercase
             name: techname[i],
             price: values[i],
+            price_history: [values[i],values[i]*0.9, values[i]*1.1, values[i]*1.2, values[i] *1.3],
             description: "This is a description for " + techname[i],
             last_updated: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -48,16 +49,17 @@ function readTechItemDB() {
             let price = doc.data().price;
             let description = doc.data().description;
             let code = doc.data().code;
+            let price_history = doc.data().price_history;
             console.log(code)
 
             // create a new card for each doc in the database with unique price and name 
             card_container = document.getElementById("card-container");
             card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<div class="text-decoration-none text-dark ">
-                <div class="card mb-3">
+            card.innerHTML = `<div class="text-decoration-none text-dark" >
+                <div class="card mb-3" >
                     <div class="card-body">
-                        <div class="container">
+                        <div class="container" >
                             <div class="row">
                                 <div class="col text-left-start">
                                     <h1 id = 'name' class=>${name}</h5>
@@ -78,26 +80,16 @@ function readTechItemDB() {
 
                 ;
             card.addEventListener('click', function () {
-                card_container.innerHTML = "";
-                card.innerHTML = `
-                    
-                    <div class="container-fluid" id="item-information">
-                    <div class="item" id="item>"go
+                
+                localStorage.setItem('name', name);
+                localStorage.setItem('price', price);
+                localStorage.setItem('description', description);
+                localStorage.setItem('code', code);
+                localStorage.setItem('price_history', price_history);
+                window.location.href = 'item_page.html';
 
-                        <h2>${name}</h2>
-                        <img style = "max-width:200px" src="images/${code}.jpg" alt="Item Image">
-                    </div>
-                    <div claass="card" id="cardi">
-                        <p>Price : 
-                        ${price}<br> Condition: Used <br> Colour: Black
-                        </p>
-                        <p>${description}</p>
-                        <button onclick="showStats()" style="color:white; background-color: midnightblue;">Show Stats</button>
-
-
-                    </div>
-                    </div>`
-                card_container.append(card)
+                
+              
 
             });
             card_container.append(card)
@@ -158,15 +150,21 @@ function readFilteredTechItemDB(itemName) {
 }
 
 
-// Add event listener to the search form
-document.getElementById("searchForm").addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission
+function addTechfield() {
+    
+    var items = db.collection("items");
+    items.get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
 
-    let itemName = document.getElementById("itemName").value; // Get item name from form input
+            doc.ref.update({
+                review: Math.ceil(Math.random() * 5),
+            });
+        });
+    }
 
-    // Call readFilteredTechItemDB with the entered item name
-    readFilteredTechItemDB(itemName);
-})
+)};
+
+
 
 
 readFilteredTechItemDB();

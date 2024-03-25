@@ -42,65 +42,28 @@
 <body>
 
     <!-- navbar -->
-    <nav id="navbarPlaceholder"></nav>
+
 
     <!-- main -->
-    <div class="container">
-        <div class=" row justify-content-center align-items-center">
-            <div class="col-4 mt-4 text-center">
-                <img src="images/prof.png" class="img-fluid" alt="">
-                <h1 class="mt-4 font-weight-bold">NAME</h1>
-                <p class="mt-4">User bio goes here.</p>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row justify-content-center mt-3">
-                <div class="col-4 text-center">
-                    <a href="edit_profile.html">
-                        <button type="button" class="btn btn-warning btn-lg">Edit Profile</button>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
 
+    <div id="charts"><canvas id="chart"></canvas></div>
+    <div id="radarcharts"> <canvas id="radarchart"></canvas></div>
 
-    <h1>Listings:</h1>
-    <div id="itemContainer" class="container">
-        <!-- Uploaded items will be displayed here -->
-    </div>
-    <!-- End of updated section -->
-
-    <div class="container">
-        <div class="row justify-content-center mt-3">
-            <div class="col-4 text-center">
-                <a href="add_item.html">
-                    <button type="button" class="btn btn-warning btn-lg">Add item <svg
-                            xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24"
-                            height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg></button>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <br>
-    <br>
-    <br>
 
     <!-- footer -->
-    <footer id="footerPlaceholder"></footer>
 
     <!-- scripts -->
     <script src="./scripts/firebaseAPI_DTC12.js"></script>
     <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/prof.js"></script>
+    <script src="./scripts/script.js"></script>
     <script src="./scripts/authentication.js"></script>
-    <script src="./scripts/profile_item.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./scripts/chart.js"></script>
+
+   
+
+
+
 
 </body>
 

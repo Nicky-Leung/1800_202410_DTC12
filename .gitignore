@@ -2,5 +2,7 @@
 *.logs
 node_modules/
 .vscode/
+test/
 firebaseAPI_DTC12.js
+
 
