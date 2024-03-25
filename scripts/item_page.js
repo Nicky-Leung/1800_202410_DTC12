@@ -60,10 +60,10 @@ function show_chart() {
 
     //initialize data object for radar chart
     const radardata = {
-        labels: ['User Review', 'Critic Review', 'Price', 'Popularity'],
+        labels: ['User Review', 'Critic Review', 'Price', 'Popularity', 'Condition'],
         datasets: [{
             label: 'Review',
-            data: [4, 3, 2, 4],
+            data: [4, 3, 2, 4, 4],
             fill: false,
             borderColor: 'rgb(75, 192, 192)',
             tension: 0.1
