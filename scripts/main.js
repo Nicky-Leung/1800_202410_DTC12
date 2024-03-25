@@ -34,7 +34,7 @@ function writeTechItemDB(max) {
             code: techname[i].replace(/\s/g, '').toLowerCase(), //remove spaces and convert to lowercase
             name: techname[i],
             price: values[i],
-            price_history: [values[i],values[i]*0.9, values[i]*1.1, values[i]*1.2, values[i] *1.3],
+            price_history: [values[i], values[i] * 0.9, values[i] * 1.1, values[i] * 1.2, values[i] * 1.3],
             description: "This is a description for " + techname[i],
             last_updated: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -80,7 +80,7 @@ function readTechItemDB() {
 
                 ;
             card.addEventListener('click', function () {
-                
+
                 localStorage.setItem('name', name);
                 localStorage.setItem('price', price);
                 localStorage.setItem('description', description);
@@ -88,8 +88,8 @@ function readTechItemDB() {
                 localStorage.setItem('price_history', price_history);
                 window.location.href = 'item_page.html';
 
-                
-              
+
+
 
             });
             card_container.append(card)
@@ -151,7 +151,7 @@ function readFilteredTechItemDB(itemName) {
 
 
 function addTechfield() {
-    
+
     var items = db.collection("items");
     items.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
@@ -162,8 +162,36 @@ function addTechfield() {
         });
     }
 
-)};
+    )
+};
 
+
+
+// display user's name in  welcome message
+function displayUserName() {
+    var user = firebase.auth().currentUser;
+    var uid = user.uid; // Get the user's unique identifier (UID)
+
+    // fetch document from users collection with same UID
+    firebase.firestore().collection('users').doc(uid).get()
+        .then(function (doc) {
+            if (doc.exists) {
+                // Update <h1> element with user's name
+                var userName = doc.data().name;
+                document.querySelector('h1').innerText = "Welcome to Midas " + userName;
+            } else {
+                console.log("No such document!");
+            }
+        })
+        .catch(function (error) {
+            console.log("Error getting document:", error);
+        });
+}
+
+// display user name when  page loads
+window.onload = function () {
+    displayUserName();
+};
 
 
 
