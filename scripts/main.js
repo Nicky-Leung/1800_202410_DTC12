@@ -167,31 +167,31 @@ function addTechfield() {
 
 
 
-// display user's name in  welcome message
-function displayUserName() {
-    var user = firebase.auth().currentUser;
-    var uid = user.uid; // Get the user's unique identifier (UID)
+// // display user's name in  welcome message
+// function displayUserName() {
+//     var user = firebase.auth().currentUser;
+//     var uid = user.uid; // Get the user's unique identifier (UID)
 
-    // fetch document from users collection with same UID
-    firebase.firestore().collection('users').doc(uid).get()
-        .then(function (doc) {
-            if (doc.exists) {
-                // Update <h1> element with user's name
-                var userName = doc.data().name;
-                document.querySelector('h1').innerText = "Welcome to Midas " + userName;
-            } else {
-                console.log("No such document!");
-            }
-        })
-        .catch(function (error) {
-            console.log("Error getting document:", error);
-        });
-}
+//     // fetch document from users collection with same UID
+//     firebase.firestore().collection('users').doc(uid).get()
+//         .then(function (doc) {
+//             if (doc.exists) {
+//                 // Update <h1> element with user's name
+//                 var userName = doc.data().name;
+//                 document.querySelector('h1').innerText = "Welcome to Midas " + userName;
+//             } else {
+//                 console.log("No such document!");
+//             }
+//         })
+//         .catch(function (error) {
+//             console.log("Error getting document:", error);
+//         });
+// }
 
-// display user name when  page loads
-window.onload = function () {
-    displayUserName();
-};
+// // display user name when  page loads
+// window.onload = function () {
+//     displayUserName();
+// };
 
 
 
@@ -254,3 +254,18 @@ function sortByPrice(order) {
         cardContainer.appendChild(card);
     });
 }
+
+
+function getNameFromAuth() {
+    firebase.auth().onAuthStateChanged(user => {
+        if (user) {
+            console.log("user is logged in")
+            console.log(user.displayName)
+            document.getElementById("name-goes-here").innerHTML = user.displayName;
+        } else {
+            console.log("user is NOT logged in")
+        }
+    })
+}
+
+getNameFromAuth()
