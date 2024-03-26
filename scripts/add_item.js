@@ -1,3 +1,19 @@
+const stars_containers = document.querySelectorAll("label[for='itemReview']");
+
+
+stars_containers.forEach(
+    function (stars) {
+        stars.forEach(function (star, index){
+            star.addEventListener('click',() => {
+        
+        for (let i = 0; i <= index; i++) {
+            document.getElementById(`star${i+1}`).textContent = 'star' ;
+}
+}
+)})});
+
+
+
 document.getElementById("addItemForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -6,6 +22,9 @@ document.getElementById("addItemForm").addEventListener("submit", function (even
     var itemDescription = document.getElementById("itemDescription").value;
 
     // Change "profile_items" to the name of your new collection
+    const stars = document.querySelectorAll('.star');
+
+
     db.collection("profile_items").add({
         itemName: itemName,
         itemPrice: itemPrice,
