@@ -1,22 +1,40 @@
-var ImageFile;      //global variable to store the File Object reference
+var ImageFile; // global variable to store the File Object reference
+
 
 function chooseFileListener() {
-    const fileInput = document.getElementById("mypic-input");   // pointer #1
-    const image = document.getElementById("mypic-goes-here");   // pointer #2
+    const fileInput = document.getElementById("mypic-input"); // pointer #1
+    const image = document.getElementById("mypic-goes-here"); // pointer #2
 
-    //attach listener to input file
-    //when this file changes, do something
-    fileInput.addEventListener('change', function (e) {
+    console.log(fileInput)
+    console.log(image)
 
-        //the change event returns a file "e.target.files[0]"
-        ImageFile = e.target.files[0];
-        var blob = URL.createObjectURL(ImageFile);
+    // check if file input and image elements exist
+    if (fileInput && image) {
+        // attach listener to input file
+        // when this file changes, do something
+        fileInput.addEventListener('change', function (e) {
 
-        //change the DOM img element source to point to this file
-        image.src = blob;    //assign the "src" property of the "img" tag
-    })
+            // the change event returns a file "e.target.files[0]"
+            ImageFile = e.target.files[0];
+            var blob = URL.createObjectURL(ImageFile);
+
+            // change the DOM img element source to point to this file
+            image.src = blob; // assign the "src" property of the "img" tag
+        });
+
+        document.querySelector('form').addEventListener('submit', function (event) {
+            // prevent the default form submission behavior
+            event.preventDefault();
+            saveUserInfo();
+        });
+    } else {
+        console.error("File input or image element not found."); // Log an error if elements are not found
+    }
 }
-chooseFileListener();
+
+// call chooseFileListener when the DOM content is fully loaded
+document.addEventListener("DOMContentLoaded", chooseFileListener);
+
 
 
 
@@ -34,3 +52,10 @@ function saveUserInfo() {
     // redirect user to the profile.html after saving data
     window.location.href = "profile.html";
 }
+
+
+
+
+
+
+
