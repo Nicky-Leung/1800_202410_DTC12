@@ -2,7 +2,7 @@ const stars_containers = document.querySelectorAll("label[for='itemReview']");
 
 
 stars_containers.forEach(
-    function (stars) {
+    function (stars, index) {
         stars.forEach(function (star, index){
             star.addEventListener('click',() => {
         

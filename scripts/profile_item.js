@@ -1,29 +1,22 @@
-function getCurrentUserID() {
-    const user = firebase.auth().currentUser;
+firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        return user.uid;
-    } else {
-        return null;
-    }
-}
-
-const currentUserID = getCurrentUserID();
-if (currentUserID) {
-    db.collection("profile_items")
-        .where("userID", "==", currentUserID)
-        .get()
-        .then((querySnapshot) => {
-            querySnapshot.forEach((doc) => {
-                const item = doc.data();
-                renderItem(item);
+        console.log("Current user ID:", currentUserID);
+        db.collection("profile_items")
+            .where("userID", "==", currentUserID)
+            .get()
+            .then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    const item = doc.data();
+                    renderItem(item);
+                });
+            })
+            .catch((error) => {
+                console.error("Error retrieving items:", error);
             });
-        })
-        .catch((error) => {
-            console.error("Error retrieving items:", error);
-        });
-} else {
-    console.error("No authenticated user found.");
-}
+    } else {
+        console.error("No authenticated user found.");
+    }
+});
 
 function renderItem(item) {
     const itemElement = document.createElement("div");
@@ -36,3 +29,4 @@ function renderItem(item) {
     const itemContainer = document.getElementById("itemContainer");
     itemContainer.appendChild(itemElement);
 }
+
