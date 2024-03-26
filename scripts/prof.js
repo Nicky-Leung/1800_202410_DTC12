@@ -17,3 +17,20 @@ function chooseFileListener() {
     })
 }
 chooseFileListener();
+
+
+
+
+function saveUserInfo() {
+    // get new name and bio saved by user
+    var newName = document.getElementById("nameInput").value;
+    var newBio = document.getElementById("schoolInput").value;
+
+    // update elements with id="name-goes-here" and "bio-goes-here" in profile.html
+    // using local storage - no firebase atm
+    localStorage.setItem("savedName", newName);
+    localStorage.setItem("savedBio", newBio);
+
+    // redirect user to the profile.html after saving data
+    window.location.href = "profile.html";
+}

@@ -49,8 +49,8 @@
         <div class=" row justify-content-center align-items-center">
             <div class="col-4 mt-4 text-center">
                 <img src="images/prof.png" class="img-fluid" alt="">
-                <h1 class="mt-4 font-weight-bold">NAME</h1>
-                <p class="mt-4">User bio goes here.</p>
+                <h1 class="mt-4 font-weight-bold" id="name-goes-here">NAME</h1>
+                <p class="mt-4" id="bio-goes-here">User bio goes here.</p>
             </div>
         </div>
         <div class="container">
@@ -101,6 +101,16 @@
     <script src="./scripts/prof.js"></script>
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/profile_item.js"></script>
+
+    <script>
+        // get saved name and bio from localStorage
+        var savedName = localStorage.getItem("savedName");
+        var savedBio = localStorage.getItem("savedBio");
+
+        // update element with id="name-goes-here"
+        document.getElementById("name-goes-here").innerText = savedName;
+        document.getElementById("bio-goes-here").innerText = savedBio;
+    </script>
 
 </body>
 
