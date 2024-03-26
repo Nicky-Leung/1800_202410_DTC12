@@ -199,4 +199,58 @@ readFilteredTechItemDB();
 
 readTechItemDB(); //call the function to read from the database
 
+function sortByPrice(order) {
+    let itemsArray = []; // Array to store items for sorting
 
+    // Get all the cards
+    let cards = document.querySelectorAll('.card');
+
+    // Loop through each card and extract item details
+    cards.forEach(card => {
+        let name = card.querySelector('#name').innerText;
+        let price = parseFloat(card.querySelector('#price').innerText.replace('Current Price: ', ''));
+        let description = card.querySelector('#description').innerText;
+        let code = card.querySelector('.card-img-top').getAttribute('src').split('/').pop().split('.')[0]; // Extract code from image src
+
+        itemsArray.push({ name, price, description, code });
+    });
+
+    // sort the items by price
+    if (order === 'asc') {
+        itemsArray.sort((a, b) => a.price - b.price); // lowest to highest
+    } else if (order === 'desc') {
+        itemsArray.sort((a, b) => b.price - a.price); // highest to lowest
+    }
+
+    // clear the card container
+    let cardContainer = document.getElementById('card-container');
+    cardContainer.innerHTML = '';
+
+    // generate cards for sorted items
+    itemsArray.forEach(item => {
+        let card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<div class="text-decoration-none text-dark ">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col text-left-start">
+                                <h1 id='name'>${item.name}</h5>
+                                    <br>
+                                    <br>
+                                    <br>
+                                    <h5 id='price' class="card-title">Current Price: ${item.price}</h5>
+                            </div>
+                            <image src="images/${item.code}.jpg" class="card-img-top col"
+                                style="height:20vh; width:20vh">
+                            </image>
+                        </div>
+                    </div>
+                    <p id="description" class="card-text">${item.description}</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+        </div>`;
+        cardContainer.appendChild(card);
+    });
+}

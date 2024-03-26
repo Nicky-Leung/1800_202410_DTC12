@@ -49,8 +49,8 @@
         <div class=" row justify-content-center align-items-center">
             <div class="col-4 mt-4 text-center">
                 <img src="images/prof.png" class="img-fluid" alt="">
-                <h1 class="mt-4 font-weight-bold">NAME</h1>
-                <p class="mt-4">User bio goes here.</p>
+                <h1 class="mt-4 font-weight-bold" id="name-goes-here">NAME</h1>
+                <p class="mt-4" id="bio-goes-here">User bio goes here.</p>
             </div>
         </div>
         <div class="container">
@@ -104,6 +104,52 @@
     <script src="./scripts/authentication.js"></script>
     <script src="./scripts/profile_item.js"></script>
     <script src="./scripts/logout.js"></script>
+
+    <script>
+        // get saved name and bio from localStorage
+        var savedName = localStorage.getItem("savedName");
+        var savedBio = localStorage.getItem("savedBio");
+
+        // update element with id="name-goes-here"
+        document.getElementById("name-goes-here").innerText = savedName;
+        document.getElementById("bio-goes-here").innerText = savedBio;
+    </script>
+
+
+    <!-- uncomment code below and then debug after fixing issues with current user -->
+
+    <!-- <script>
+        //  fetch from firebase and display user info
+        function displayUserInfo() {
+            var user = firebase.auth().currentUser;
+            var uid = user.uid; // Get the user's unique identifier (UID)
+            console.log(uid);
+
+            // fetch the document from the users collection with same UID
+            firebase.firestore().collection('users').doc(uid).get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        // display the user's name and bio on the profile page
+                        document.getElementById('name').innerText = doc.data().name;
+                        document.getElementById('userBio').innerText = doc.data().bio;
+                    } else {
+                        console.log("Document does not exist");
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error getting document:", error);
+                });
+        }
+
+        // display user info when page loads
+        window.onload = function () {
+            displayUserInfo();
+        };
+    </script> -->
+
+
+
+
 
 </body>
 

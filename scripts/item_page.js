@@ -4,6 +4,7 @@ function show_item() {
     var price = localStorage.getItem('price');
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
+ 
 
     //create a card for the item
     card_container = document.getElementById("item-information");
@@ -94,6 +95,7 @@ function addToFavorites() {
     var price = localStorage.getItem('price');
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
+    var price_history = localStorage.getItem('price_history')
 
     // Check if the item is already in favorites
     var favoritesRef = db.collection("favorites");
@@ -106,7 +108,8 @@ function addToFavorites() {
                 name: name,
                 price: price,
                 description: description,
-                code: code
+                code: code,
+                price_history: price_history
             })
                 .then(function (docRef) {
                     console.log("Item added to favorites with ID: ", docRef.id);
