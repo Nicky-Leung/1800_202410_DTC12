@@ -112,6 +112,42 @@
         document.getElementById("bio-goes-here").innerText = savedBio;
     </script>
 
+
+    <!-- uncomment code below and then debug after fixing issues with current user -->
+
+    <!-- <script>
+        //  fetch from firebase and display user info
+        function displayUserInfo() {
+            var user = firebase.auth().currentUser;
+            var uid = user.uid; // Get the user's unique identifier (UID)
+            console.log(uid);
+
+            // fetch the document from the users collection with same UID
+            firebase.firestore().collection('users').doc(uid).get()
+                .then(function (doc) {
+                    if (doc.exists) {
+                        // display the user's name and bio on the profile page
+                        document.getElementById('name').innerText = doc.data().name;
+                        document.getElementById('userBio').innerText = doc.data().bio;
+                    } else {
+                        console.log("Document does not exist");
+                    }
+                })
+                .catch(function (error) {
+                    console.log("Error getting document:", error);
+                });
+        }
+
+        // display user info when page loads
+        window.onload = function () {
+            displayUserInfo();
+        };
+    </script> -->
+
+
+
+
+
 </body>
 
 </html>
