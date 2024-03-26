@@ -1,8 +1,9 @@
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log("Current user ID:", currentUserID);
+        const currentUser = user.uid;
+        console.log("Current user ID:", user.uid);
         db.collection("profile_items")
-            .where("userID", "==", currentUserID)
+            .where("userID", "==", currentUser)
             .get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
