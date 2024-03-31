@@ -1,10 +1,10 @@
 const data = {
     labels: ['1', '2', '3', '4', '5'],
     datasets: [{
-        label: 'Price History',
+        label: 'Price mystery',
         data: localStorage.getItem('price_history').split(",").reverse(),
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        fill: true,
+        borderColor: 'rgb(254, 183, 52)',
         tension: 0.1
     }
     ]
@@ -23,7 +23,7 @@ const radardata = {
         label: 'Review',
         data: [4,3,2,4],
         fill: false,
-        borderColor: 'rgb(75, 192, 192)',
+        borderColor: 'rgb(254, 183, 52)',
         tension: 0.1
     }
     ]

@@ -44,8 +44,8 @@ function show_chart() {
         datasets: [{
             label: 'Price History',
             data: localStorage.getItem('price_history').split(",").reverse(),
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            fill: true,
+            borderColor: 'rgb(254,183,52)',
             tension: 0.1
         }
         ]
@@ -66,7 +66,7 @@ function show_chart() {
             label: 'Review',
             data: [4, 3, 2, 4, 4],
             fill: false,
-            borderColor: 'rgb(75, 192, 192)',
+            borderColor: 'rgb(254,183,52)',
             tension: 0.1
         }
         ]
