@@ -19,7 +19,7 @@
   <script src="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.8.1/firebase-ui-auth.css" />
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
-  
+
 </head>
 
 <body>
@@ -28,28 +28,45 @@
 
 
 
-    <!-- display item information -->
-      <div id="item-information">
-      </div>
+  <!-- display item information -->
+  <div id="item-information">
+  </div>
 
-      
-      <!-- display line chart -->
-        <div id="charts"><canvas id="chart"></canvas></div>
-        <!-- display radar chart -->
-        <div id="radarcharts"> <canvas id="radarchart"></canvas></div>
-        
-     
 
-      <br>
-      <footer id="footerPlaceholder"></footer>
+  <!-- display line chart -->
+  <div id="charts"><canvas id="chart"></canvas></div>
+  <!-- display radar chart -->
+  <div id="radarcharts"> <canvas id="radarchart"></canvas></div>
 
-      <script src="./scripts/firebaseAPI_DTC12.js"></script>
-      <script src="./scripts/skeleton.js"></script>
-      <script src="./scripts/script.js"></script>
-      <script src="./scripts/authentication.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-      <script src="./scripts/item_page.js"></script>
-     
+
+
+  <br>
+  <footer id="footerPlaceholder"></footer>
+
+  <script src="./scripts/firebaseAPI_DTC12.js"></script>
+  <script src="./scripts/skeleton.js"></script>
+  <script src="./scripts/script.js"></script>
+  <script src="./scripts/authentication.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="./scripts/item_page.js"></script>
+
+  <script>
+    // toggle heart colour when clicked
+    function toggleFill() {
+      var heartPath = document.getElementById("heartPath");
+      var currentFill = heartPath.getAttribute("fill");
+      if (currentFill === "none") {
+        heartPath.setAttribute("fill", "red");
+      } else {
+        heartPath.setAttribute("fill", "none");
+      }
+    }
+
+
+
+
+
+  </script>
 </body>
 
 </html>
