@@ -65,7 +65,7 @@ function show_chart() {
         datasets: [{
             label: 'Review',
             data: [4, 3, 2, 4, 4],
-            fill: false,
+            fill: true,
             borderColor: 'rgb(254,183,52)',
             tension: 0.1
         }
