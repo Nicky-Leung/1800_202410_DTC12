@@ -96,9 +96,12 @@ function addToFavorites() {
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
     var price_history = localStorage.getItem('price_history')
+    
 
     // Check if the item is already in favorites
-    var favoritesRef = db.collection("favorites");
+    var favoritesRef = db.collection("users").doc(firebase.auth().currentUser.uid).collection("saveditems");
+    console.log(firebase.auth().currentUser.uid)
+    console.log(favoritesRef)
     var query = favoritesRef.where("name", "==", name).limit(1);
 
     query.get().then(function (querySnapshot) {

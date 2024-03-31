@@ -262,6 +262,8 @@ function getNameFromAuth() {
             console.log("user is logged in")
             console.log(user.displayName)
             document.getElementById("name-goes-here").innerHTML = user.displayName;
+            currentUser = user.uid;
+            console.log(currentUser)
         } else {
             console.log("user is NOT logged in")
         }

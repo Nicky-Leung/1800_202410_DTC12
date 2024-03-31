@@ -50,7 +50,7 @@ document.getElementById("addItemForm").addEventListener("submit", function (even
     // Change "profile_items" to the name of your new collection
 
 
-    db.collection("profile_items").add({
+    db.collection("users").doc(firebase.auth().currentUser.uid).collection("profile_items").add({
         itemName: itemName,
         itemPrice: itemPrice,
         itemDescription: itemDescription,
