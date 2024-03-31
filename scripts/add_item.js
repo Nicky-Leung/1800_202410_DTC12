@@ -1,16 +1,29 @@
-const stars_containers = document.querySelectorAll("label[for='itemReview']");
+
+//fill the stars visually based on the index of the star clicked
+function fillstars (star, index, stars) {
+    star.addEventListener("click", function() {
+    for (let i = 0; i <= index; i++) {
+        stars[i].innerHTML = "star"
+    }
+
+})}
 
 
-stars_containers.forEach(
-    function (stars, index) {
-        stars.forEach(function (star, index){
-            star.addEventListener('click',() => {
-        
-        for (let i = 0; i <= index; i++) {
-            document.getElementById(`star${i+1}`).textContent = 'star' ;
-}
-}
-)})});
+// grab all stars for each review items 
+let userReviewStars = document.querySelectorAll("#userReview .star")
+console.log(userReviewStars)
+userReviewStars.forEach (fillstars)
+let userCriticStars = document.querySelectorAll("#criticReview .star")
+userCriticStars.forEach (fillstars)
+
+let userConditionStars = document.querySelectorAll("#condition .star")
+userConditionStars.forEach (fillstars)
+let userPriceStars = document.querySelectorAll("#price .star")
+userPriceStars.forEach (fillstars)
+let popularityStars = document.querySelectorAll("#popularity .star")
+popularityStars.forEach (fillstars)
+
+
 
 
 
@@ -22,7 +35,6 @@ document.getElementById("addItemForm").addEventListener("submit", function (even
     var itemDescription = document.getElementById("itemDescription").value;
 
     // Change "profile_items" to the name of your new collection
-    const stars = document.querySelectorAll('.star');
 
 
     db.collection("profile_items").add({
