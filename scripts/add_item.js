@@ -6,16 +6,25 @@ function fillstars (star, index, stars) {
         stars[i].innerHTML = "star"
     }
 
-})}
+}
+)};
 
+function countstars(stars) {
+    let count = 0
+    stars.forEach(star => {
+        if (star.innerHTML === "star") {
+            count++
+        }
+    })
+    return count
+}
 
 // grab all stars for each review items 
 let userReviewStars = document.querySelectorAll("#userReview .star")
-console.log(userReviewStars)
+// fill the stars visually based on the index of the star clickeds
 userReviewStars.forEach (fillstars)
 let userCriticStars = document.querySelectorAll("#criticReview .star")
 userCriticStars.forEach (fillstars)
-
 let userConditionStars = document.querySelectorAll("#condition .star")
 userConditionStars.forEach (fillstars)
 let userPriceStars = document.querySelectorAll("#price .star")
@@ -26,13 +35,17 @@ popularityStars.forEach (fillstars)
 
 
 
-
 document.getElementById("addItemForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     var itemName = document.getElementById("itemName").value;
     var itemPrice = document.getElementById("itemPrice").value;
     var itemDescription = document.getElementById("itemDescription").value;
+    var userReviewScore  = countstars(userReviewStars)
+    var userCriticScore = countstars(userCriticStars)
+    var userConditionScore = countstars(userConditionStars)
+    var userPriceScore = countstars(userPriceStars)
+    var popularityScore = countstars(popularityStars)
 
     // Change "profile_items" to the name of your new collection
 
@@ -40,7 +53,13 @@ document.getElementById("addItemForm").addEventListener("submit", function (even
     db.collection("profile_items").add({
         itemName: itemName,
         itemPrice: itemPrice,
-        itemDescription: itemDescription
+        itemDescription: itemDescription,
+        userReview: userReviewScore,
+        userCritic: userCriticScore,
+        userCondition: userConditionScore,
+        userPrice: userPriceScore,
+        popularity: popularityScore
+        
     })
         .then(function (docRef) {
             console.log("Item added with ID: ", docRef.id);
