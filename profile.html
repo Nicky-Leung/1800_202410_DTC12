@@ -46,9 +46,9 @@
 
     <!-- main -->
     <div class="container">
-        <div class=" row justify-content-center align-items-center">
+        <div class="row justify-content-center align-items-center">
             <div class="col-4 mt-4 text-center">
-                <img src="images/prof.png" class="img-fluid" alt="">
+                <img id="profile-image" class="img-fluid" alt="">
                 <h1 class="mt-4 font-weight-bold" id="name-goes-here">NAME</h1>
                 <p class="mt-4" id="bio-goes-here">User bio goes here.</p>
             </div>
@@ -114,13 +114,23 @@
             var user = firebase.auth().currentUser;
             if (user) {
                 var uid = user.uid;
-
+                // Fetch user data from Firestore
                 firebase.firestore().collection('users').doc(uid).get()
                     .then(function (doc) {
                         if (doc.exists) {
                             var data = doc.data();
+                            // Update the displayed name and bio
                             document.getElementById('name-goes-here').innerText = data.name || ''; // for name
                             document.getElementById('bio-goes-here').innerText = data.bio || ''; // for bio
+
+                            // Check if profile image URL exists in data
+                            if (data.profileImageUrl) {
+                                // Set the src attribute of the profile image
+                                document.getElementById('profile-image').src = data.profileImageUrl;
+                            } else {
+                                // Set a default image if no profile image URL is found
+                                document.getElementById('profile-image').src = 'images/default-profile-image.jpg';
+                            }
                         } else {
                             console.log("No such document!");
                         }
@@ -133,6 +143,7 @@
             }
         }
 
+        // Automatically fetch user information when the page loads or when the user's authentication state changes
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
                 fetchUserInfo();

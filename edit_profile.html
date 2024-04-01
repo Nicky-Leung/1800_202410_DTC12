@@ -60,9 +60,7 @@
 
     <!-- main -->
     <div class="container">
-
-
-        <h1>User Profile </h1>
+        <h1>User Profile</h1>
         <form>
             <fieldset class="mb-3" id="personalInfoFields">
                 <div class="form-group py-5">
@@ -89,7 +87,6 @@
     </div>
 
     <!-- footer -->
-    <footer id="footerPlaceholder"></footer>
 
     <!-- scripts -->
     <script src="./scripts/firebaseAPI_DTC12.js"></script>
@@ -102,31 +99,63 @@
     <!-- update firebase with new name and bio -->
 
     <script>
+        // Function to preview selected image
+        function previewImage(event) {
+            var reader = new FileReader();
+            reader.onload = function () {
+                var output = document.getElementById('mypic-goes-here');
+                output.src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
         // Save user info
         function saveUserInfo() {
             // Get entered name and bio from form
             var newName = document.getElementById('nameInput').value;
             var newBio = document.getElementById('schoolInput').value;
-
-            // Update user's name and bio in Firebase 
+            // Get selected image file
+            var file = document.getElementById('mypic-input').files[0];
+            // Get current user
             var user = firebase.auth().currentUser;
             var uid = user.uid; // Get UID
-
-            // Update the document in 'users' collection    with new name and bio
-            firebase.firestore().collection('users').doc(uid).update({
-                name: newName,
-                bio: newBio
-            })
-                .then(function () {
+            // If a new image is selected
+            if (file) {
+                // Upload image to Firebase Storage
+                var storageRef = firebase.storage().ref('profile_images/' + uid);
+                var uploadTask = storageRef.put(file);
+                // Listen for upload completion
+                uploadTask.on('state_changed', null, null, function () {
+                    // Get image URL
+                    uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
+                        // Update the document in 'users' collection with new name, bio, and image URL
+                        firebase.firestore().collection('users').doc(uid).update({
+                            name: newName,
+                            bio: newBio,
+                            profileImageUrl: downloadURL
+                        }).then(function () {
+                            console.log("Document successfully updated!");
+                            // Redirect to profile after saving
+                            window.location.href = "profile.html";
+                        }).catch(function (error) {
+                            console.error("Error updating document: ", error);
+                        });
+                    });
+                });
+            } else {
+                // If no new image is selected, update only name and bio
+                firebase.firestore().collection('users').doc(uid).update({
+                    name: newName,
+                    bio: newBio
+                }).then(function () {
                     console.log("Document successfully updated!");
                     // Redirect to profile after saving
                     window.location.href = "profile.html";
-                })
-                .catch(function (error) {
+                }).catch(function (error) {
                     console.error("Error updating document: ", error);
                 });
+            }
         }
-
     </script>
 
 </body>
