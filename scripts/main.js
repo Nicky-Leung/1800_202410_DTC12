@@ -69,10 +69,18 @@ function fetchDescriptionFromWikipedia(itemName) {
 function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
     db.collection("items").get().then(items => {
-        items.forEach(doc => {
+        items.forEach(async doc => {
             let name = doc.data().name;
             let price = doc.data().price;
-            let description = doc.data().description;
+            try {
+                var description = await fetchDescriptionFromWikipedia(doc.data().name);
+            }
+            catch (error) {
+                var description = doc.data().description;
+            }
+            if (description == null) {
+                description = doc.data().description;
+            }
             let code = doc.data().code;
             let price_history = doc.data().price_history;
             console.log(code)
