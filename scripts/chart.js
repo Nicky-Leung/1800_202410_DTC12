@@ -1,3 +1,5 @@
+
+// initialize data object to fill into chart function 
 const data = {
     labels: ['1', '2', '3', '4', '5'],
     datasets: [{
@@ -10,6 +12,7 @@ const data = {
     ]
 };
 
+// draws chart for price history
 new Chart(document.getElementById('chart'), {
 
     type: 'line',
@@ -17,6 +20,7 @@ new Chart(document.getElementById('chart'), {
 
 });
 
+// initialize data object for radar chart
 const radardata = {
     labels: ['User Review', 'Critic Review', 'Price', 'Popularity'],
     datasets: [{
@@ -30,7 +34,7 @@ const radardata = {
 
 };
 
-
+// draws radar chart
 new Chart(document.getElementById('radarchart'), {
 
     type: 'radar',

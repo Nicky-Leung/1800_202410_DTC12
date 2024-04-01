@@ -1,3 +1,4 @@
+// remove search bar on logout
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         
