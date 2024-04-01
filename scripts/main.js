@@ -278,15 +278,28 @@ function sortByPrice(order) {
 function getNameFromAuth() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
-            console.log("user is logged in")
-            console.log(user.displayName)
-            document.getElementById("name-goes-here").innerHTML = user.displayName;
-            currentUser = user.uid;
-            console.log(currentUser)
+            console.log("User is logged in");
+            console.log("User display name:", user.displayName);
+            // Get the reference to the document in the users collection corresponding to the user's UID
+            var userDocRef = db.collection("users").doc(user.uid);
+
+            // Get the document snapshot and retrieve the name field
+            userDocRef.get().then(doc => {
+                if (doc.exists) {
+                    var userData = doc.data();
+                    var userName = userData.name;
+                    console.log("User name from Firestore:", userName);
+                    document.getElementById("name-goes-here").innerHTML = userName;
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch(error => {
+                console.log("Error getting document:", error);
+            });
         } else {
-            console.log("user is NOT logged in")
+            console.log("User is NOT logged in");
         }
-    })
+    });
 }
 
 getNameFromAuth()
