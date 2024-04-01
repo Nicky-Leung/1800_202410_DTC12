@@ -101,32 +101,33 @@
     <!-- Uncomment and then debug later after current user issue is fixed-->
     <!-- update firebase with new name and bio -->
 
-    <!-- <script>
-        // save user info
+    <script>
+        // Save user info
         function saveUserInfo() {
-            // get entered name and bio from form
+            // Get entered name and bio from form
             var newName = document.getElementById('nameInput').value;
             var newBio = document.getElementById('schoolInput').value;
 
-            // update user's name and bio in Firebase 
+            // Update user's name and bio in Firebase 
             var user = firebase.auth().currentUser;
-            var uid = user.uid; // get UID
+            var uid = user.uid; // Get UID
 
-            // update the document in users collection with new name and bio
+            // Update the document in 'users' collection    with new name and bio
             firebase.firestore().collection('users').doc(uid).update({
                 name: newName,
-                //bio: newBio
+                bio: newBio
             })
                 .then(function () {
                     console.log("Document successfully updated!");
-                    // redirect to profile after saving
+                    // Redirect to profile after saving
                     window.location.href = "profile.html";
                 })
                 .catch(function (error) {
                     console.error("Error updating document: ", error);
                 });
         }
-    </script> -->
+
+    </script>
 
 </body>
 
