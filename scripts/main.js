@@ -74,9 +74,9 @@ function readTechItemDB() {
                             </div>
                         </div>
                         <p id = "description" class="card-text">${description}</p>
-                        <a class="btn btn-md" style="background-color: #FEB734" onclick='console.log("deleted item from my items"); event.stopPropagation();'>Delete Item</a>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
+                            <a class="btn btn-md" style="background-color: #FEB734" onclick='console.log("deleted item from my items"); event.stopPropagation(); deleteItem(event, this)'>Delete Item</a>
+                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        </div>
             </div>`
 
                 ;
@@ -100,6 +100,29 @@ function readTechItemDB() {
 
 
 }
+function deleteItem(event, button) {
+    // ensure that we're not clicking the card, just the button
+    event.stopPropagation();
+
+    // find parent card associated with button
+    let card = findParentBySelector(button, '.card');
+
+    if (card) {
+        console.log("Found the parent card element");
+        card.remove();
+    }
+}
+
+// ind the closest parent element 
+function findParentBySelector(elm, selector) {
+    var current = elm.parentNode;
+    while (current && !current.matches(selector)) {
+        current = current.parentNode;
+    }
+    return current;
+}
+
+
 
 function readFilteredTechItemDB(itemName) {
     // Define a variable for the collection you want to read from Firestore
