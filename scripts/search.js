@@ -6,6 +6,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function displaySearchResults(query) {
+    // Get the container for the search results
+    let card_container = document.getElementById("search-container");
+
+    // Add the "Showing Results for" line at the top
+    let header = document.createElement("h1");
+    header.innerHTML = `Showing Results for: ${query}`;
+    card_container.appendChild(header);
+
+    // Query the Firestore for items
     db.collection("items").get().then(items => {
         items.forEach(async doc => {
             let name = doc.data().name;
@@ -22,13 +31,17 @@ function displaySearchResults(query) {
                 let code = doc.data().code;
                 let price_history = doc.data().price_history;
 
-                let card_container = document.getElementById("search-container");
+                // Create a card for each item
                 let card = document.createElement("div");
-                card.className = "card";
+                card.className = "card favorited-item"; // Add CSS class for styling
+                card.style.border = "1px solid #feb734";
+                card.style.borderRadius = "5px";
+                card.style.padding = "10px";
+                card.style.marginBottom = "15px";
+                card.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
+
                 card.innerHTML = `<div class="text-decoration-none text-dark">
-                                  <h1> Showing Results for: ${name}</h1>
                     <div class="card mb-3">
-    
                         <div class="card-body">
                             <div class="container">
                                 <div class="row">
@@ -37,7 +50,7 @@ function displaySearchResults(query) {
                                         <br><br><br>
                                         <h5 class="card-title">Current Price: ${price}</h5>
                                     </div>
-                                    <img src="images/${code}.jpg" class="card-img-top col" style="height:20vh; width:20vh">
+                                    <img src="images/${code}.jpg" class="card-img-top col favorited-item-img" style="height:20vh; width:20vh">
                                 </div>
                             </div>
                             <p class="card-text">${description}</p>
@@ -47,6 +60,7 @@ function displaySearchResults(query) {
                     </div>
                 </div>`;
 
+                // Add event listener to each card for item details
                 card.addEventListener('click', function () {
                     localStorage.setItem('name', name);
                     localStorage.setItem('price', price);
@@ -55,8 +69,11 @@ function displaySearchResults(query) {
                     localStorage.setItem('price_history', price_history);
                     window.location.href = 'item_page.html';
                 });
-                card_container.append(card);
+                card_container.appendChild(card);
             }
         });
     });
+
+    // Add padding to the container to create space around the cards
+    card_container.style.padding = "20px";
 }
