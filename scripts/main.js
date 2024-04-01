@@ -1,4 +1,4 @@
-function writeTechItemDB(max) {
+async function writeTechItemDB(max) {
 
 
     //create mock data and their prices 
@@ -30,16 +30,41 @@ function writeTechItemDB(max) {
     //define a variable for the collection you want to create in Firestore to populate data
     var items = db.collection("items");
     for (i = 0; i < techname.length; i++) {
-        items.add({ //add to database, autogen ID
+        console.log(i)
+        let price = values[i]
+        let description = await fetchDescriptionFromWikipedia(techname[i])
+
+        console.log(description)
+
+        await items.add({ //add to database, autogen ID
             code: techname[i].replace(/\s/g, '').toLowerCase(), //remove spaces and convert to lowercase
             name: techname[i],
-            price: values[i],
+            price: price,
             price_history: [values[i], values[i] * 0.9, values[i] * 1.1, values[i] * 1.2, values[i] * 1.3],
-            description: "This is a description for " + techname[i],
+            description: description,
             last_updated: firebase.firestore.FieldValue.serverTimestamp()
         })
     }
 }
+// get description of item from wikipedia 
+function fetchDescriptionFromWikipedia(itemName) {
+    let apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${itemName}`;
+    console.log(apiUrl)
+    return fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            if (data.extract) {
+                return data.extract;
+            } else {
+                throw new Error("Description not found");
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching description from Wikipedia:", error);
+            return null;
+        });
+}
+
 
 function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
@@ -265,3 +290,13 @@ function getNameFromAuth() {
 }
 
 getNameFromAuth()
+
+
+// test fetchDescriptionFromWikipedia, delete later
+fetchDescriptionFromWikipedia("iPhone 13")
+    .then(description => {
+        console.log("Description for iPhone 13:", description);
+    })
+    .catch(error => {
+        console.error("Error fetching description:", error);
+    });
