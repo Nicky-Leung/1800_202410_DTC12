@@ -5,6 +5,9 @@ function fillstars(star, index, stars) {
         for (let i = 0; i <= index; i++) {
             stars[i].innerHTML = "star"
         }
+        for (let j = index + 1; j < stars.length; j++) {
+            stars[j].innerHTML = "star_outline";
+        }
 
     }
     )
