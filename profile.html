@@ -58,15 +58,15 @@
                 <div class="col-4 text-center">
                     <a href="edit_profile.html">
                         <button type="button" class="btn btn-warning btn-lg">Edit Profile</button>
-                        
+
                     </a>
-                    <button class="mt-4 btn btn-warning btn-lg" type= 'button' onclick = "logout()" >Log Out</button>
+                    <button class="mt-4 btn btn-warning btn-lg" type='button' onclick="logout()">Log Out</button>
                 </div>
             </div>
         </div>
     </div>
 
-    
+
 
 
     <h1>Listings:</h1>
@@ -88,9 +88,9 @@
                             <path d="M5 12l14 0" />
                         </svg></button>
                 </a>
-               
+
             </div>
-      
+
         </div>
     </div>
 
@@ -110,50 +110,37 @@
     <script src="./scripts/logout.js"></script>
 
     <script>
-        // get saved name and bio from localStorage
-        var savedName = localStorage.getItem("savedName");
-        var savedBio = localStorage.getItem("savedBio");
-
-        // update element with id="name-goes-here"
-        document.getElementById("name-goes-here").innerText = savedName;
-        document.getElementById("bio-goes-here").innerText = savedBio;
-    </script>
-
-
-    <!-- uncomment code below and then debug after fixing issues with current user -->
-
-    <!-- <script>
-        //  fetch from firebase and display user info
-        function displayUserInfo() {
+        function fetchUserInfo() {
             var user = firebase.auth().currentUser;
-            var uid = user.uid; // Get the user's unique identifier (UID)
-            console.log(uid);
+            if (user) {
+                var uid = user.uid;
 
-            // fetch the document from the users collection with same UID
-            firebase.firestore().collection('users').doc(uid).get()
-                .then(function (doc) {
-                    if (doc.exists) {
-                        // display the user's name and bio on the profile page
-                        document.getElementById('name').innerText = doc.data().name;
-                        document.getElementById('userBio').innerText = doc.data().bio;
-                    } else {
-                        console.log("Document does not exist");
-                    }
-                })
-                .catch(function (error) {
-                    console.log("Error getting document:", error);
-                });
+                firebase.firestore().collection('users').doc(uid).get()
+                    .then(function (doc) {
+                        if (doc.exists) {
+                            var data = doc.data();
+                            document.getElementById('name-goes-here').innerText = data.name || ''; // for name
+                            document.getElementById('bio-goes-here').innerText = data.bio || ''; // for bio
+                        } else {
+                            console.log("No such document!");
+                        }
+                    })
+                    .catch(function (error) {
+                        console.log("Error getting document:", error);
+                    });
+            } else {
+                console.log("User is not authenticated.");
+            }
         }
 
-        // display user info when page loads
-        window.onload = function () {
-            displayUserInfo();
-        };
-    </script> -->
-
-
-
-
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                fetchUserInfo();
+            } else {
+                console.log("User is not authenticated.");
+            }
+        });
+    </script>
 
 </body>
 
