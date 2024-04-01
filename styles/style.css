@@ -30,3 +30,15 @@
     width: 200px;
     height: 200px;
 }
+
+#card-container {
+    padding: 0 15px;
+    padding: 20px;
+}
+
+/* Add this to your CSS file */
+.card {
+    margin-bottom: 20px;
+    border: 2px solid #feb734;
+    /* Add space between cards */
+}

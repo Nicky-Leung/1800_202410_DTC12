@@ -1,6 +1,4 @@
 async function writeTechItemDB(max) {
-
-
     //create mock data and their prices 
     let techItems = {
         'iPhone 13': 699,
@@ -46,6 +44,7 @@ async function writeTechItemDB(max) {
         })
     }
 }
+
 // get description of item from wikipedia 
 function fetchDescriptionFromWikipedia(itemName) {
     let apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${itemName}`;
@@ -65,7 +64,6 @@ function fetchDescriptionFromWikipedia(itemName) {
         });
 }
 
-
 function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
     db.collection("items").get().then(items => {
@@ -74,8 +72,7 @@ function readTechItemDB() {
             let price = doc.data().price;
             try {
                 var description = await fetchDescriptionFromWikipedia(doc.data().name);
-            }
-            catch (error) {
+            } catch (error) {
                 var description = doc.data().description;
             }
             if (description == null) {
@@ -90,12 +87,12 @@ function readTechItemDB() {
             card = document.createElement("div");
             card.className = "card";
             card.innerHTML = `<div class="text-decoration-none text-dark" >
-                <div class="card mb-3" >
                     <div class="card-body">
                         <div class="container" >
                             <div class="row">
                                 <div class="col text-left-start">
-                                    <h1 id = 'name' class=>${name}</h5>
+                                   <h1 id='name' class="">${name}
+                                   </h1>
                                         <br>
                                         <br>
                                         <br>
@@ -109,7 +106,9 @@ function readTechItemDB() {
                         <p id = "description" class="card-text">${description}</p>
                             <a class="btn btn-md" style="background-color: #FEB734" onclick='console.log("deleted item from my items"); event.stopPropagation(); deleteItem(event, this)'>Delete Item</a>
                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
+                       
+                            </div>
+                    </div>        
             </div>`
 
                 ;
@@ -122,17 +121,12 @@ function readTechItemDB() {
                 localStorage.setItem('price_history', price_history);
                 window.location.href = 'item_page.html';
 
-
-
-
             });
             card_container.append(card)
-
         })
     });
-
-
 }
+
 function deleteItem(event, button) {
     // ensure that we're not clicking the card, just the button
     event.stopPropagation();
@@ -154,8 +148,6 @@ function findParentBySelector(elm, selector) {
     }
     return current;
 }
-
-
 
 function readFilteredTechItemDB(itemName) {
     // Define a variable for the collection you want to read from Firestore
@@ -206,24 +198,18 @@ function readFilteredTechItemDB(itemName) {
     });
 }
 
-
 function addTechfield() {
-
     var items = db.collection("items");
     items.get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-
             doc.ref.update({
                 review: Math.ceil(Math.random() * 5),
             });
         });
-    }
-
-    )
+    });
 };
 
 readFilteredTechItemDB();
-
 readTechItemDB(); //call the function to read from the database
 
 function sortByPrice(order) {
@@ -282,7 +268,6 @@ function sortByPrice(order) {
     });
 }
 
-
 function getNameFromAuth() {
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
@@ -311,7 +296,6 @@ function getNameFromAuth() {
 }
 
 getNameFromAuth()
-
 
 // test fetchDescriptionFromWikipedia, delete later
 fetchDescriptionFromWikipedia("iPhone 13")
