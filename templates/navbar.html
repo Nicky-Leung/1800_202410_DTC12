@@ -2,17 +2,16 @@
   <div class="container-fluid">
     <a class="navbar-brand font-weight-bold" href="main.html">
       <img src="../images/Midas_brand.jpg" style="max-width: 50px; border-radius: 25px;" alt="">
-      <strong style="color: #FEB734">Midas</strong></a>
-    <form class="row align-items-center g-0" id="searchbar">
-      <div class="col">
-        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+      <strong style="color: #FEB734">Midas</strong>
+    </a>
+    <form class="row align-items-center g-0" id="searchbar" action="search.html" method="GET">
+      <div class="col-auto">
+        <input type="text" class="form-control" name="q" placeholder="Search...">
       </div>
       <div class="col-auto">
-        <button class="btn btn-outline-dark" style="background-color: #FEB734" type="submit"
-          href="search.html">Search</button>
+        <button class="btn btn-outline-dark" style="background-color: #FEB734" type="submit">Search</button>
       </div>
     </form>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -25,4 +24,3 @@
     </div>
   </div>
 </nav>
-<script src="./scripts/navbar.js"></script>
