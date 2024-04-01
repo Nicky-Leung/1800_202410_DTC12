@@ -47,7 +47,7 @@
     <!-- main -->
     <div class="container">
         <div class="row justify-content-center align-items-center">
-            <div class="col-4 mt-4 text-center">
+            <div class="col-12 col-md-4 mt-4 text-center"> <!-- Added col-md-4 for larger screens -->
                 <div id="profile-image-container">
                     <img id="profile-image" class="img-fluid" alt="">
                 </div>
@@ -55,16 +55,17 @@
                 <p class="mt-4" id="bio-goes-here">User bio goes here.</p>
             </div>
         </div>
-        <div class="container">
-            <div class="row justify-content-center mt-3">
-                <div class="col-4 text-center">
-                    <a href="edit_profile.html">
-                        <button type="button" class="btn btn-warning btn-lg">Edit Profile</button>
-                    </a>
-                    <button class="mt-4 btn btn-warning btn-lg" type='button' onclick="logout()">Log Out</button>
-                </div>
+    </div>
+    <div class="container">
+        <div class="row justify-content-center mt-3">
+            <div class="col-4 text-center">
+                <a href="edit_profile.html">
+                    <button type="button" class="btn btn-warning btn-lg">Edit Profile</button>
+                </a>
+                <button class="mt-4 btn btn-warning btn-lg" type='button' onclick="logout()">Log Out</button>
             </div>
         </div>
+    </div>
     </div>
 
 
