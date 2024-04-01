@@ -13,6 +13,7 @@ function fillstars(star, index, stars) {
     )
 };
 
+// count the amount of filled stars in the review
 function countstars(stars) {
     let count = 0
     stars.forEach(star => {
@@ -56,6 +57,8 @@ function uploadImage(file) {
 document.getElementById("addItemForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
+
+    // get value from form 
     var itemName = document.getElementById("itemName").value;
     var itemPrice = document.getElementById("itemPrice").value;
     var itemDescription = document.getElementById("itemDescription").value;
@@ -68,9 +71,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     var imageFile = document.getElementById("itemImage").files[0];
     var imageUrl = await uploadImage(imageFile);
 
-    // Change "profile_items" to the name of your new collection
-
-
+    // Add form data to firebase
     db.collection("users").doc(firebase.auth().currentUser.uid).collection("profile_items").add({
         itemName: itemName,
         itemPrice: itemPrice,
