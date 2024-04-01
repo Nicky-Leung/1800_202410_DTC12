@@ -27,5 +27,14 @@ function renderItem(item) {
     `;
     const itemContainer = document.getElementById("itemContainer");
     itemContainer.appendChild(itemElement);
+    itemElement.addEventListener("click", () => {
+        localStorage.setItem('name', item.itemName);
+        localStorage.setItem('price', item.itemPrice);
+        localStorage.setItem('description', item.itemDescription);
+        localStorage.setItem('code', item.itemCode);
+        localStorage.setItem('price_history', item.price_history);
+        window.location.href = 'item_page.html';
+
+    });
 }
 
