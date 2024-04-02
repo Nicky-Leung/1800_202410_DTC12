@@ -38,7 +38,7 @@ async function writeTechItemDB(max) {
             code: techname[i].replace(/\s/g, '').toLowerCase(), //remove spaces and convert to lowercase
             name: techname[i],
             price: price,
-            price_history: [values[i], values[i] * 0.9, values[i] * 1.1, values[i] * 1.2, values[i] * 1.3],
+            price_history: [price],
             description: description,
             last_updated: firebase.firestore.FieldValue.serverTimestamp()
         })
@@ -68,6 +68,7 @@ function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
     db.collection("items").get().then(items => {
         items.forEach(async doc => {
+            let docId = doc.id;
             let name = doc.data().name;
             let price = doc.data().price;
             try {
@@ -115,11 +116,14 @@ function readTechItemDB() {
             card.addEventListener('click', function () {
 
                 localStorage.setItem('name', name);
+
                 localStorage.setItem('price', price);
                 localStorage.setItem('description', description);
                 localStorage.setItem('code', code);
                 localStorage.setItem('price_history', price_history);
+                localStorage.setItem('docId', docId);   //store the doc id in local storage
                 window.location.href = 'item_page.html';
+               
 
             });
             card_container.append(card)
