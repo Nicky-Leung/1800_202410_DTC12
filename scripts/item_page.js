@@ -27,6 +27,7 @@ function show_item() {
                 <path id="heartPath" fill="none" stroke="red" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
             <a href="https://www.ebay.com/sch/i.html?_nkw=${name}" target="_blank"><button type="button" class="btn btn-primary">Buy on Ebay</button></a>
+            <a href="https://www.facebook.com/marketplace/104034516300688/search?query=${name}" target="_blank"><button type="button" class="btn btn-primary">Buy on FB Marketplace</button></a>
             <a href= "existing_items_edit.html"><button type="button" class="btn btn-primary">Edit</button></a>
         </div>  
     </div>
@@ -97,7 +98,7 @@ function addToFavorites() {
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
     var price_history = localStorage.getItem('price_history')
-    
+
 
     // Check if the item is already in favorites
     var favoritesRef = db.collection("users").doc(firebase.auth().currentUser.uid).collection("saveditems");
