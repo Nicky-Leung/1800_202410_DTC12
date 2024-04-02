@@ -44,7 +44,7 @@ function show_chart() {
         labels: ['1', '2', '3', '4', '5'],
         datasets: [{
             label: 'Price History',
-            data: localStorage.getItem('price_history').split(",").reverse(),
+            data: localStorage.getItem('price_history').split(",").slice(-5),
             fill: true,
             borderColor: 'rgb(254,183,52)',
             tension: 0.1

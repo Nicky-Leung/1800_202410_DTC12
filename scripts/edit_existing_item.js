@@ -59,7 +59,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     // Add form data to firebase
     db.collection("items").doc(docID).update({
     
-        itemPrice: itemPrice,
+        price: itemPrice,
         userReview: (userReviewScore + userReviewScore)/2,
         userCritic: (userCriticScore + userCriticScore)/2,
         userCondition: (userConditionScore + userConditionScore)/2,
@@ -72,7 +72,8 @@ document.getElementById("addItemForm").addEventListener("submit", async function
         .then(function (docRef) {
             console.log("Item added");
             // Redirect to profile page after item is added
-            window.location.href = "profile.html";
+            
+            window.location.href = "main.html";
         })
         .catch(function (error) {
             console.error("Error adding item: ", error);
