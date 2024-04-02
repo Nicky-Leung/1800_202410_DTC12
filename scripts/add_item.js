@@ -57,7 +57,6 @@ function uploadImage(file) {
 document.getElementById("addItemForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-
     // get value from form 
     var itemName = document.getElementById("itemName").value;
     var itemPrice = document.getElementById("itemPrice").value;
@@ -69,7 +68,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     var popularityScore = countstars(popularityStars)
 
     var imageFile = document.getElementById("itemImage").files[0];
-    var imageUrl = await uploadImage(imageFile);
+    // var imageUrl = await uploadImage(imageFile);
 
     // Add form data to firebase
     db.collection("users").doc(firebase.auth().currentUser.uid).collection("profile_items").add({
@@ -81,7 +80,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
         userCondition: userConditionScore,
         userPrice: userPriceScore,
         popularity: popularityScore,
-        imageUrl: imageUrl
+        // imageUrl: imageUrl
     })
         .then(function (docRef) {
             console.log("Item added with ID: ", docRef.id);
