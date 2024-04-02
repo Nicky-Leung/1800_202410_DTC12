@@ -6,9 +6,9 @@ This browser based web application to ...
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
-* 
-* Nick Thucydides: nick-thucydides 
-* ...
+* Nicky Leung : Nicky-Leung
+* Nick Thucydides : nick-thucydides 
+* Jarell Vicencio: Jarellvee
 	
 ## 3. Technologies and Resources Used
 List technologies (with version numbers), API's, icons, fonts, images, media or data sources, and other resources that were used.
@@ -20,8 +20,8 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* ...
-* ...
+* If a user already has an account, they can log in with their email and password.  
+* If a user does not have an account, they can sign up with their name, email, and password.
 * ...
 
 ## 5. Known Bugs and Limitations
@@ -50,9 +50,23 @@ It has the following subfolders and files:
 ├── images                   # Folder for images
     /blah.jpg                # Acknowledge source
 ├── scripts                  # Folder for scripts
-    /blah.js                 # 
+    /add_item.js     
+    /authentication.js    
+    /add_item.js    
+    /chart.js    
+    /favorites.js    
+    /firebaseAPI_DTC12.js
+    /item_page.js
+    /logout.js
+    /navbar.js
+    /prof.js
+    /profile_item.js
+    /script.js
+    /search.js
+    /skeleton.js
+
 ├── styles                   # Folder for styles
-    /blah.css                # 
+    /style.css                # 
 
 
 
