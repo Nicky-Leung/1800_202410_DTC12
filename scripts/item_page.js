@@ -37,10 +37,14 @@ function show_item() {
     card_container.append(card)
 }
 
+// get the price of the item from local storage
+
+
 function show_chart() {
     // create chart for item infomration
 
     //initialize data object for pricehistory
+
     const data = {
         labels: ['1', '2', '3', '4', '5'],
         datasets: [{
@@ -49,6 +53,7 @@ function show_chart() {
             fill: true,
             borderColor: 'rgb(254,183,52)',
             tension: 0.1
+            
         }
         ]
     };
@@ -58,6 +63,18 @@ function show_chart() {
 
         type: 'line',
         data: data,
+        options: {
+            scales: {
+                y: {
+                    ticks: {
+                        // Include a dollar sign in the ticks
+                        callback: function(value, index, values) {
+                            return '$' + value;
+                        }
+                    }
+                }
+            }
+        }
 
     });
 

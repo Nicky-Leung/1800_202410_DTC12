@@ -1,10 +1,18 @@
 
 // initialize data object to fill into chart function 
+function get_price(){
+    
+    price = localStorage.getItem('price_history').split(",").reverse()
+    price.array.forEach(element => {
+        element = "$" + element
+    });
+    return price
+}
 const data = {
     labels: ['1', '2', '3', '4', '5'],
     datasets: [{
         label: 'Price mystery',
-        data: localStorage.getItem('price_history').split(",").reverse(),
+        data: get_price(),
         fill: true,
         borderColor: 'rgb(254, 183, 52)',
         tension: 0.1
