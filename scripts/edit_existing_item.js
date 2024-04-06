@@ -55,6 +55,9 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     var userConditionScore = countstars(userConditionStars)
     var userPriceScore = countstars(userPriceStars)
     var popularityScore = countstars(popularityStars)
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString();
+
 
     // Add form data to firebase
     db.collection("items").doc(docID).update({
@@ -65,7 +68,9 @@ document.getElementById("addItemForm").addEventListener("submit", async function
         userCondition: (userConditionScore + userConditionScore)/2,
         userPrice: (userPriceScore + userPriceScore)/2,
         popularity: (popularityScore+popularityScore)/2,
-        price_history: firebase.firestore.FieldValue.arrayUnion(itemPrice)
+        price_history: firebase.firestore.FieldValue.arrayUnion(itemPrice),
+        last_update: firebase.firestore.FieldValue.serverTimestamp(),
+        update_history: firebase.firestore.FieldValue.arrayUnion(formattedDate)
 
         // imageUrl: imageUrl
     })
