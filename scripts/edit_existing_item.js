@@ -31,14 +31,11 @@ function countstars(stars) {
 let userReviewStars = document.querySelectorAll("#userReview .star")
 // fill the stars visually based on the index of the star clickeds
 userReviewStars.forEach(fillstars)
-let userCriticStars = document.querySelectorAll("#criticReview .star")
-userCriticStars.forEach(fillstars)
 let userConditionStars = document.querySelectorAll("#condition .star")
 userConditionStars.forEach(fillstars)
 let userPriceStars = document.querySelectorAll("#price .star")
 userPriceStars.forEach(fillstars)
-let popularityStars = document.querySelectorAll("#popularity .star")
-popularityStars.forEach(fillstars)
+
 
 
 // get reference to firebase storage
@@ -51,10 +48,8 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     // get value from form 
     var itemPrice = document.getElementById("itemPrice").value;
     var userReviewScore = countstars(userReviewStars)
-    var userCriticScore = countstars(userCriticStars)
     var userConditionScore = countstars(userConditionStars)
     var userPriceScore = countstars(userPriceStars)
-    var popularityScore = countstars(popularityStars)
     const today = new Date();
     const formattedDate = today.toLocaleDateString();
 
@@ -63,11 +58,9 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     db.collection("items").doc(docID).update({
     
         price: itemPrice,
-        userReview: (userReviewScore + userReviewScore)/2,
-        userCritic: (userCriticScore + userCriticScore)/2,
-        userCondition: (userConditionScore + userConditionScore)/2,
-        userPrice: (userPriceScore + userPriceScore)/2,
-        popularity: (popularityScore+popularityScore)/2,
+        review: userReviewScore,
+        value: userPriceScore,
+        condition: userConditionScore,
         price_history: firebase.firestore.FieldValue.arrayUnion(itemPrice),
         last_update: firebase.firestore.FieldValue.serverTimestamp(),
         update_history: firebase.firestore.FieldValue.arrayUnion(formattedDate)
