@@ -1,3 +1,19 @@
+async function updateItem() {
+    //update value of item in database
+    
+    await db.collection("items").get().then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            price = doc.data().price
+            additional_price = [price, price * 1.1, price * 1.2, price * 1.1, price]
+            console.log(additional_price)
+            doc.ref.update({
+                price_history: additional_price,
+            });
+        });
+    });
+
+}
+
 async function writeTechItemDB(max) {
     //create mock data and their prices 
     let techItems = {
@@ -40,10 +56,12 @@ async function writeTechItemDB(max) {
             price: price,
             price_history: [price],
             description: description,
-            last_updated: firebase.firestore.FieldValue.serverTimestamp()
+            last_updated: firebase.firestore.FieldValue.serverTimestamp(),
+            update_history: ['3/10/2024', '3/21/2024', '3/30/2024', '4/1/2024', '4/2/2024']
         })
     }
 }
+
 
 // get description of item from wikipedia 
 function fetchDescriptionFromWikipedia(itemName) {
@@ -60,7 +78,7 @@ function fetchDescriptionFromWikipedia(itemName) {
         })
         .catch(error => {
             console.error("Error fetching description from Wikipedia:", error);
-            return null;
+            return `This is a ${itemName}.`;
         });
 }
 
@@ -123,7 +141,7 @@ function readTechItemDB() {
                 localStorage.setItem('price_history', price_history);
                 localStorage.setItem('docId', docId);   //store the doc id in local storage
                 window.location.href = 'item_page.html';
-               
+
 
             });
             card_container.append(card)
