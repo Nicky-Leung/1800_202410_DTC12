@@ -23,12 +23,14 @@ function show_item() {
         <div class="card" id="cardi">
             <p>Price: ${price}<br>Condition: Used<br>Colour: Black</p>
             <p>${description}</p>
-            <svg id="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" onclick="toggleFill(); addToFavorites()">
+            <svg class= "m-1"  id="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" onclick="toggleFill(); addToFavorites()">
                 <path id="heartPath" fill="none" stroke="red" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
             </svg>
-            <a href="https://www.ebay.com/sch/i.html?_nkw=${name}" target="_blank"><button type="button" class="btn btn-primary">Buy on Ebay</button></a>
-            <a href="https://www.facebook.com/marketplace/104034516300688/search?query=${name}" target="_blank"><button type="button" class="btn btn-primary">Buy on FB Marketplace</button></a>
-            <a href= "existing_items_edit.html"><button type="button" class="btn btn-primary">Edit</button></a>
+            <div class= "m-4" style="display: flex; justify-content: space-around;">
+                <a href="https://www.ebay.com/sch/i.html?_nkw=${name}" target="_blank"><button type="button" class="btn btn-primary"> Ebay</button></a>
+                <a href="https://www.facebook.com/marketplace/104034516300688/search?query=${name}" target="_blank"><button type="button" class="btn btn-primary">FB Marketplace</button></a>
+                <a href= "existing_items_edit.html"><button type="button" class="btn btn-primary">Edit</button></a>
+            </div>
         </div>  
     </div>
 `;
@@ -104,7 +106,7 @@ function show_chart() {
                     max: 5,
                     ticks: {
                         stepSize: 1,
-                        callback: function(value,) {
+                        callback: function (value,) {
                             return parseInt(value);
                         }
                     }
@@ -164,6 +166,23 @@ function addToFavorites() {
         alert("Error checking favorites. Please try again later.");
     });
 }
+
+// Toggle heart colour when clicked
+function toggleFill() {
+    var heartPath = document.getElementById("heartPath");
+    var currentFill = heartPath.getAttribute("fill");
+    // If heart is not filled, add fill
+    // If not filled, add fill
+    if (currentFill === "none") {
+        heartPath.setAttribute("fill", "red");
+    } else {
+        heartPath.setAttribute("fill", "none");
+    }
+}
+
+
+
+
 
 show_item();
 show_chart();
