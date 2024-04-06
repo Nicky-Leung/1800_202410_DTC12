@@ -82,8 +82,8 @@ function show_chart() {
     const radardata = {
         labels: ['Review', 'Value', 'Condition'],
         datasets: [{
-            label: 'Review',
-            data: [localStorage.getItem('review'), localStorage.getItem('value'), localStorage.getItem('condition')],
+            label: 'Scores',
+            data: [localStorage.getItem('review'), (localStorage.getItem('value')), (localStorage.getItem('condition'))],
             fill: true,
             borderColor: 'rgb(254,183,52)',
             tension: 0.1
@@ -95,13 +95,19 @@ function show_chart() {
     //create radar chart
     new Chart(document.getElementById('radarchart'), {
 
-        type: 'radar',
+        type: 'polarArea',
         data: radardata,
         options: {
             scales: {
                 r: {
                     beginAtZero: true,
-                    max: 5
+                    max: 5,
+                    ticks: {
+                        stepSize: 1,
+                        callback: function(value,) {
+                            return parseInt(value);
+                        }
+                    }
                 }
             }
         }
