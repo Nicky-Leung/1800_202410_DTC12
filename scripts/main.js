@@ -1,9 +1,9 @@
 async function updateItem() {
-    //update value of item in database
-    
+    // Update value of item in database
+
     await db.collection("items").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-        
+
             doc.ref.update({
                 review: Math.ceil(Math.random() * 5),
                 condition: Math.ceil(Math.random() * 5),
@@ -15,7 +15,7 @@ async function updateItem() {
 }
 
 async function writeTechItemDB(max) {
-    //create mock data and their prices 
+    // Create mock data and their prices 
     let techItems = {
         'iPhone 13': 699,
         'Samsung Galaxy S21': 799,
@@ -63,11 +63,13 @@ async function writeTechItemDB(max) {
 }
 
 
-// get description of item from wikipedia 
+// Get description of item from wikipedia 
 function fetchDescriptionFromWikipedia(itemName) {
+    // Construct url that points to wiki summary of the item 
     let apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${itemName}`;
-    console.log(apiUrl)
+    // Retrieve data from wiki API
     return fetch(apiUrl)
+        // Extract JSON data, throw error if the data is not found
         .then(response => response.json())
         .then(data => {
             if (data.extract) {
@@ -76,6 +78,7 @@ function fetchDescriptionFromWikipedia(itemName) {
                 throw new Error("Description not found");
             }
         })
+        // Catch any errors in fetching or processing data
         .catch(error => {
             console.error("Error fetching description from Wikipedia:", error);
             return `This is a ${itemName}.`;
@@ -141,7 +144,7 @@ function readTechItemDB() {
                 localStorage.setItem('description', description);
                 localStorage.setItem('code', code);
                 localStorage.setItem('price_history', price_history);
-                localStorage.setItem('docId', docId);   
+                localStorage.setItem('docId', docId);
                 localStorage.setItem('update_history', update_history);
                 localStorage.setItem('value', value);
                 localStorage.setItem('condition', condition);
@@ -156,7 +159,7 @@ function readTechItemDB() {
 }
 
 
-// ind the closest parent element 
+// Find the closest parent element 
 function findParentBySelector(elm, selector) {
     var current = elm.parentNode;
     while (current && !current.matches(selector)) {

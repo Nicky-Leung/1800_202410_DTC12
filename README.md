@@ -1,8 +1,7 @@
 # Project Title
 
 ## 1. Project Description
-State your app in a nutshell, or one-sentence pitch. Give some elaboration on what the core features are.  
-This browser based web application to ... 
+ Midas is a web application to help buyers and sellers stay up-to-date on prices on secondary markets by providing users with an easy-to-understand visualization of current prices on the marketplace.
 
 ## 2. Names of Contributors
 List team members and/or short bio's here... 
@@ -20,7 +19,7 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
-* If a user already has an account, they can log in with their email and password.  
+* If a user already has an account, they can log in with a valid email address and password.  
 * If a user does not have an account, they can sign up with their name, email, and password.
 * ...
 
