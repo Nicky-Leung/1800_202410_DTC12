@@ -4,7 +4,7 @@ async function updateItem() {
     await db.collection("items").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
             price = doc.data().price
-            additional_price = [price, price * 1.1, price * 1.2, price * 1.1, price]
+            additional_price = [price*1.3, price * 1.1, price * 1.2, price * 1.1, price]
             console.log(additional_price)
             doc.ref.update({
                 price_history: additional_price,
@@ -99,6 +99,7 @@ function readTechItemDB() {
             }
             let code = doc.data().code;
             let price_history = doc.data().price_history;
+            let update_history = doc.data().update_history;
             console.log(code)
 
             // create a new card for each doc in the database with unique price and name 
@@ -134,12 +135,12 @@ function readTechItemDB() {
             card.addEventListener('click', function () {
 
                 localStorage.setItem('name', name);
-
                 localStorage.setItem('price', price);
                 localStorage.setItem('description', description);
                 localStorage.setItem('code', code);
                 localStorage.setItem('price_history', price_history);
                 localStorage.setItem('docId', docId);   //store the doc id in local storage
+                localStorage.setItem('update_history', update_history);
                 window.location.href = 'item_page.html';
 
 

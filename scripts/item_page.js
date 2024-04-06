@@ -46,7 +46,7 @@ function show_chart() {
     //initialize data object for pricehistory
 
     const data = {
-        labels: ['1', '2', '3', '4', '5'],
+        labels: localStorage.getItem('update_history').split(",").slice(-5),
         datasets: [{
             label: 'Price History',
             data: localStorage.getItem('price_history').split(",").slice(-5),
