@@ -1,5 +1,5 @@
 function show_item() {
-    //gets item from local store and shows its information on the page
+    // Get item from local storage and show its information on the page
     var name = localStorage.getItem('name');
     var price = localStorage.getItem('price');
     var description = localStorage.getItem('description');
@@ -7,7 +7,7 @@ function show_item() {
     var docid = localStorage.getItem('docId');
 
 
-    //create a card for the item
+    // Create a card for the item
     card_container = document.getElementById("item-information");
     card_container.innerHTML = "";
     card = document.createElement("div");
@@ -33,17 +33,17 @@ function show_item() {
     </div>
 `;
 
-    //add the card to the page
+    // Add the card to the page
     card_container.append(card)
 }
 
-// get the price of the item from local storage
+// Get the price of the item from local storage
 
 
 function show_chart() {
-    // create chart for item infomration
+    // Create chart for item infomration
 
-    //initialize data object for pricehistory
+    // Initialize data object for pricehistory
 
     const data = {
         labels: localStorage.getItem('update_history').split(",").slice(-5),
@@ -53,12 +53,12 @@ function show_chart() {
             fill: true,
             borderColor: 'rgb(254,183,52)',
             tension: 0.1
-            
+
         }
         ]
     };
 
-    //create chart for price history
+    // Create chart for price history
     new Chart(document.getElementById('chart'), {
 
         type: 'line',
@@ -68,7 +68,7 @@ function show_chart() {
                 y: {
                     ticks: {
                         // Include a dollar sign in the ticks
-                        callback: function(value, index, values) {
+                        callback: function (value, index, values) {
                             return '$' + value;
                         }
                     }
@@ -78,7 +78,7 @@ function show_chart() {
 
     });
 
-    //initialize data object for radar chart
+    // Initialize data object for radar chart
     const radardata = {
         labels: ['Review', 'Value', 'Condition'],
         datasets: [{
@@ -92,7 +92,7 @@ function show_chart() {
 
     };
 
-    //create radar chart
+    // Create radar chart
     new Chart(document.getElementById('radarchart'), {
 
         type: 'polarArea',
@@ -131,7 +131,7 @@ function addToFavorites() {
 
     query.get().then(function (querySnapshot) {
         if (querySnapshot.empty) {
-            // Item not found in favorites, add it
+            // If item is not found in favorites, add it
             favoritesRef.add({
                 name: name,
                 price: price,
@@ -148,7 +148,7 @@ function addToFavorites() {
                     alert("Error adding item to favorites. Please try again later.");
                 });
         } else {
-            // Item found in favorites, remove it
+            // if item is found in favorites, remove it
             querySnapshot.forEach(function (doc) {
                 doc.ref.delete().then(function () {
                     console.log("Item removed from favorites");
