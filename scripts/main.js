@@ -3,11 +3,11 @@ async function updateItem() {
     
     await db.collection("items").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-            price = doc.data().price
-            additional_price = [price*1.3, price * 1.1, price * 1.2, price * 1.1, price]
-            console.log(additional_price)
+        
             doc.ref.update({
-                price_history: additional_price,
+                review: Math.ceil(Math.random() * 5),
+                condition: Math.ceil(Math.random() * 5),
+                value: Math.ceil(Math.random() * 5),
             });
         });
     });
@@ -100,7 +100,10 @@ function readTechItemDB() {
             let code = doc.data().code;
             let price_history = doc.data().price_history;
             let update_history = doc.data().update_history;
-            console.log(code)
+            let value = doc.data().value;
+            let condition = doc.data().condition;
+            let review = doc.data().review;
+            console.log(review)
 
             // create a new card for each doc in the database with unique price and name 
             card_container = document.getElementById("card-container");
@@ -124,7 +127,6 @@ function readTechItemDB() {
                             </div>
                         </div>
                         <p id = "description" class="card-text">${description}</p>
-                            <a class="btn btn-md" style="background-color: #FEB734" onclick='console.log("deleted item from my items"); event.stopPropagation(); deleteItem(event, this)'>Delete Item</a>
                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                        
                             </div>
@@ -139,8 +141,11 @@ function readTechItemDB() {
                 localStorage.setItem('description', description);
                 localStorage.setItem('code', code);
                 localStorage.setItem('price_history', price_history);
-                localStorage.setItem('docId', docId);   //store the doc id in local storage
+                localStorage.setItem('docId', docId);   
                 localStorage.setItem('update_history', update_history);
+                localStorage.setItem('value', value);
+                localStorage.setItem('condition', condition);
+                localStorage.setItem('review', review);
                 window.location.href = 'item_page.html';
 
 
@@ -150,18 +155,6 @@ function readTechItemDB() {
     });
 }
 
-function deleteItem(event, button) {
-    // ensure that we're not clicking the card, just the button
-    event.stopPropagation();
-
-    // find parent card associated with button
-    let card = findParentBySelector(button, '.card');
-
-    if (card) {
-        console.log("Found the parent card element");
-        card.remove();
-    }
-}
 
 // ind the closest parent element 
 function findParentBySelector(elm, selector) {
