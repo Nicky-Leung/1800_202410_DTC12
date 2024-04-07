@@ -22,10 +22,10 @@ function renderItem(item) {
     itemElement.classList.add("item");
     itemElement.innerHTML = `
     <div class="favorited-item">  
-        <h2>${item.itemName}</h2>
+        <h2>${item.price}</h2>
         <a href="item_page.html" style="text-decoration: none; color: inherit;">
             <img style="max-width:200px" src="${item.imageUrl}" alt="Item Image">
-            <p style="font-weight: bold;">Current price: ${item.itemPrice}</p>
+            <p style="font-weight: bold;">Current price: ${item.price}</p>
             <p>Description: ${item.itemDescription}</p>
         </a>
     </div>
@@ -33,11 +33,15 @@ function renderItem(item) {
     const itemContainer = document.getElementById("itemContainer");
     itemContainer.appendChild(itemElement);
     itemElement.addEventListener("click", () => {
-        localStorage.setItem('name', item.itemName);
-        localStorage.setItem('price', item.itemPrice);
-        localStorage.setItem('description', item.itemDescription);
-        localStorage.setItem('code', item.itemCode);
+        localStorage.setItem('name', item.name);
+        localStorage.setItem('price', item.price);
+        localStorage.setItem('description', item.description);
+        localStorage.setItem('code', item.code);
         localStorage.setItem('price_history', item.price_history);
+        localStorage.setItem('update_history', item.update_history);
+        localStorage.setItem('review', item.review);
+        localStorage.setItem('condition', item.condition);
+        localStorage.setItem('value', item.value);
         window.location.href = 'item_page.html';
     });
 }
