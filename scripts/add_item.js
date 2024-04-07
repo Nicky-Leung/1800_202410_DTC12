@@ -1,5 +1,4 @@
-
-//fill the stars visually based on the index of the star clicked
+// Fill the stars visually based on the index of the star clicked
 function fillstars(star, index, stars) {
     star.addEventListener("click", function () {
         for (let i = 0; i <= index; i++) {
@@ -8,10 +7,8 @@ function fillstars(star, index, stars) {
         for (let j = index + 1; j < stars.length; j++) {
             stars[j].innerHTML = "star_outline";
         }
-
-    }
-    )
-};
+    });
+}
 
 // count the amount of filled stars in the review
 function countstars(stars) {
@@ -24,30 +21,25 @@ function countstars(stars) {
     return count
 }
 
-// grab all stars for each review items 
-let userReviewStars = document.querySelectorAll("#userReview .star")
-// fill the stars visually based on the index of the star clickeds
-userReviewStars.forEach(fillstars)
-let userCriticStars = document.querySelectorAll("#criticReview .star")
-userCriticStars.forEach(fillstars)
-let userConditionStars = document.querySelectorAll("#condition .star")
-userConditionStars.forEach(fillstars)
-let userPriceStars = document.querySelectorAll("#price .star")
-userPriceStars.forEach(fillstars)
-let popularityStars = document.querySelectorAll("#popularity .star")
-popularityStars.forEach(fillstars)
-
+// grab all stars for each review items
+let userReviewStars = document.querySelectorAll("#userReview .star");
+userReviewStars.forEach(fillstars);
+let userCriticStars = document.querySelectorAll("#criticReview .star");
+userCriticStars.forEach(fillstars);
+let userConditionStars = document.querySelectorAll("#condition .star");
+userConditionStars.forEach(fillstars);
+let userPriceStars = document.querySelectorAll("#price .star");
+userPriceStars.forEach(fillstars);
+let popularityStars = document.querySelectorAll("#popularity .star");
+popularityStars.forEach(fillstars);
 
 // get reference to firebase storage
 var storageRef = firebase.storage().ref();
 
 // upload image to firebase storage
 function uploadImage(file) {
-    // can maybe change name later
     var imageName = file.name;
-
-    // upload file to firebase storage
-    var imageRef = storageRef.child('images/' + imageName);
+    var imageRef = storageRef.child('profile_images/' + imageName); // store te images in "profile_images" folder
     return imageRef.put(file)
         .then(snapshot => snapshot.ref.getDownloadURL())
         .catch(error => console.error('error uploading image:', error));
@@ -57,7 +49,6 @@ function uploadImage(file) {
 document.getElementById("addItemForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    // get value from form 
     var itemName = document.getElementById("itemName").value;
     var itemPrice = document.getElementById("itemPrice").value;
     var itemDescription = document.getElementById("itemDescription").value;
@@ -68,9 +59,9 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     var popularityScore = countstars(popularityStars)
 
     var imageFile = document.getElementById("itemImage").files[0];
-    // var imageUrl = await uploadImage(imageFile);
+    var imageUrl = await uploadImage(imageFile);
 
-    // Add form data to firebase
+
     db.collection("users").doc(firebase.auth().currentUser.uid).collection("profile_items").add({
         itemName: itemName,
         itemPrice: itemPrice,
@@ -80,11 +71,10 @@ document.getElementById("addItemForm").addEventListener("submit", async function
         userCondition: userConditionScore,
         userPrice: userPriceScore,
         popularity: popularityScore,
-        // imageUrl: imageUrl
+        imageUrl: imageUrl
     })
         .then(function (docRef) {
             console.log("Item added with ID: ", docRef.id);
-            // Redirect to profile page after item is added
             window.location.href = "profile.html";
         })
         .catch(function (error) {
