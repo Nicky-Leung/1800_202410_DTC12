@@ -105,6 +105,7 @@ function readTechItemDB() {
             let value = doc.data().value;
             let condition = doc.data().condition;
             let review = doc.data().review;
+            let image = doc.data().imageUrl
             console.log(review)
 
             // create a new card for each doc in the database with unique price and name 
@@ -123,7 +124,7 @@ function readTechItemDB() {
                                         <br>
                                         <h5 id = 'price' class="card-title">Current Price: ${price}</h5>
                                 </div>
-                                <image src="images/${code}.jpg" class="card-img-top col"
+                                <image src="${image}" class="card-img-top col"
                                     style="height:20vh; width:20vh">
                                 </image>
                             </div>

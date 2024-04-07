@@ -1,42 +1,50 @@
 function show_item() {
-    // Get item from local storage and show its information on the page
+    // Get item information from local storage
     var name = localStorage.getItem('name');
     var price = localStorage.getItem('price');
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
     var docid = localStorage.getItem('docId');
 
-
-    // Create a card for the item
+    // Create HTML content for the item
     card_container = document.getElementById("item-information");
     card_container.innerHTML = "";
     card = document.createElement("div");
 
-    card.innerHTML = `
-    <br>
-    <br>
-    <div class="container-fluid" id="item-information">
-        <div class="item" id="item" style="display:flex">
-            <h2>${name}</h2>
-            <img style="max-width:200px" src="images/${code}.jpg" alt="Item Image">
-        </div>
-        <div class="card" id="cardi">
-            <p>Price: ${price}<br>Condition: Used<br>Colour: Black</p>
-            <p>${description}</p>
-            <svg class= "m-1"  id="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" onclick="toggleFill(); addToFavorites()">
-                <path id="heartPath" fill="none" stroke="red" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-            </svg>
-            <div class= "m-4" style="display: flex; justify-content: space-around;">
-                <a href="https://www.ebay.com/sch/i.html?_nkw=${name}" target="_blank"><button type="button" class="btn btn-primary"> Ebay</button></a>
-                <a href="https://www.facebook.com/marketplace/104034516300688/search?query=${name}" target="_blank"><button type="button" class="btn btn-primary">FB Marketplace</button></a>
-                <a  href= "existing_items_edit.html"><button type="button" class="btn btn-primary" style="background-color: #FEB734; color: black">Edit</button></a>
-            </div>
-        </div>  
-    </div>
-`;
+    // Retrieve item data from Firestore
+    db.collection("items").doc(docid).get().then(function (doc) {
+        if (doc.exists) {
+            // Item document found, retrieve imageUrl
+            var imageUrl = doc.data().imageUrl;
 
-    // Add the card to the page
-    card_container.append(card)
+            // Add HTML content for the item
+            card.innerHTML = `
+            <br>
+            <br>
+            <div class="container-fluid" id="item-information">
+                <div class="item" id="item" style="display:flex">
+                    <h2>${name}</h2>
+                    <img style="max-width:200px" src="${imageUrl}" alt="Item Image">
+                </div>
+                <div class="card" id="cardi">
+                    <p>Price: ${price}<br>Condition: Used<br>Colour: Black</p>
+                    <p>${description}</p>
+                    <svg class= "m-1"  id="heart" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" onclick="toggleFill(); addToFavorites()">
+                        <path id="heartPath" fill="none" stroke="red" stroke-width="2" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                    </svg>
+                    <div class= "m-4" style="display: flex; justify-content: space-around;">
+                        <a href="https://www.ebay.com/sch/i.html?_nkw=${name}" target="_blank"><button type="button" class="btn btn-primary"> Ebay</button></a>
+                        <a href="https://www.facebook.com/marketplace/104034516300688/search?query=${name}" target="_blank"><button type="button" class="btn btn-primary">FB Marketplace</button></a>
+                        <a  href= "existing_items_edit.html"><button type="button" class="btn btn-primary" style="background-color: #FEB734; color: black">Edit</button></a>
+                    </div>
+                </div>  
+            </div>
+            `;
+        }
+
+        // Add the card to the page
+        card_container.append(card)
+    })
 }
 
 // Get the price of the item from local storage
