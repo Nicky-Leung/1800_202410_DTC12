@@ -39,7 +39,7 @@ var storageRef = firebase.storage().ref();
 // upload image to firebase storage
 function uploadImage(file) {
     var imageName = file.name;
-    var imageRef = storageRef.child('profile_images/' + imageName); // store te images in "profile_images" folder
+    var imageRef = storageRef.child('item_images/' + imageName); // store te images in "item_images" folder
     return imageRef.put(file)
         .then(snapshot => snapshot.ref.getDownloadURL())
         .catch(error => console.error('error uploading image:', error));
