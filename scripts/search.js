@@ -30,6 +30,11 @@ function displaySearchResults(query) {
                 }
                 let code = doc.data().code;
                 let price_history = doc.data().price_history;
+                let update_history = doc.data().update_history;
+                let image = doc.data().imageUrl;
+                let review = doc.data().review;
+                let condition = doc.data().condition;
+                let value = doc.data().value;
 
                 // Create a card for each item
                 let card = document.createElement("div");
@@ -50,11 +55,10 @@ function displaySearchResults(query) {
                                         <br><br><br>
                                         <h5 class="card-title">Current Price: ${price}</h5>
                                     </div>
-                                    <img src="images/${code}.jpg" class="card-img-top col favorited-item-img" style="height:20vh; width:20vh">
+                                    <img src=${image}" class="card-img-top col favorited-item-img" style="height:20vh; width:20vh">
                                 </div>
                             </div>
                             <p class="card-text">${description}</p>
-                            <a class="btn btn-md" style="background-color: #FEB734" onclick='console.log("deleted item from my items"); event.stopPropagation(); deleteItem(event, this)'>Delete Item</a>
                             <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                         </div>
                     </div>
@@ -67,6 +71,11 @@ function displaySearchResults(query) {
                     localStorage.setItem('description', description);
                     localStorage.setItem('code', code);
                     localStorage.setItem('price_history', price_history);
+                    localStorage.setItem('update_history', update_history);
+                    localStorage.setItem('imageUrl', image);
+                    localStorage.setItem('review', review);
+                    localStorage.setItem('condition', condition);
+                    localStorage.setItem('value', value);
                     window.location.href = 'item_page.html';
                 });
                 card_container.appendChild(card);
