@@ -21,13 +21,15 @@ function renderItem(item) {
     const itemElement = document.createElement("div");
     itemElement.classList.add("item");
     itemElement.innerHTML = `
+    <div class="favorited-item">  
         <h2>${item.itemName}</h2>
         <a href="item_page.html" style="text-decoration: none; color: inherit;">
             <img style="max-width:200px" src="${item.imageUrl}" alt="Item Image">
             <p>Price: ${item.itemPrice}</p>
             <p>Description: ${item.itemDescription}</p>
         </a>
-    `;
+    </div>
+`; //added div favorited item for the css
     const itemContainer = document.getElementById("itemContainer");
     itemContainer.appendChild(itemElement);
     itemElement.addEventListener("click", () => {
