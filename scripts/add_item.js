@@ -59,12 +59,12 @@ async function addItemToCollections(itemData) {
 document.getElementById("addItemForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
-    var itemName = document.getElementById("itemName").value;
-    var itemPrice = document.getElementById("itemPrice").value;
-    var itemDescription = document.getElementById("itemDescription").value;
-    var userReviewScore = countstars(userReviewStars);
-    var userConditionScore = countstars(userConditionStars);
-    var userPriceScore = countstars(userPriceStars);
+    var name = document.getElementById("itemName").value;
+    var price = document.getElementById("itemPrice").value;
+    var description = document.getElementById("itemDescription").value;
+    var review = countstars(userReviewStars);
+    var condition = countstars(userConditionStars);
+    var value = countstars(userPriceStars);
 
     var imageFile = document.getElementById("itemImage").files[0];
     var imageUrl = await uploadImage(imageFile);
@@ -72,15 +72,15 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     const formattedDate = today.toLocaleDateString();
     // Create an object with the item data
     var itemData = {
-        name: itemName,
-        code: itemName.replace(/\s/g, '').toLowerCase(),
-        price: itemPrice,
-        price_history: [itemPrice],
+        name: name,
+        code: name.replace(/\s/g, '').toLowerCase(),
+        price: price,
+        price_history: [price],
         update_history: [formattedDate],
-        description: itemDescription,
-        review: userReviewScore,
-        condition: userConditionScore,
-        value: userPriceScore,
+        description: description,
+        review: review,
+        condition: condition,
+        value: value,
         imageUrl: imageUrl
     };
 

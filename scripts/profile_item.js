@@ -22,11 +22,11 @@ function renderItem(item) {
     itemElement.classList.add("item");
     itemElement.innerHTML = `
     <div class="favorited-item">  
-        <h2>${item.price}</h2>
+        <h2>${item.name}</h2>
         <a href="item_page.html" style="text-decoration: none; color: inherit;">
             <img style="max-width:200px" src="${item.imageUrl}" alt="Item Image">
             <p style="font-weight: bold;">Current price: ${item.price}</p>
-            <p>Description: ${item.itemDescription}</p>
+            <p>Description: ${item.description}</p>
         </a>
     </div>
 `; //added div favorited item for the css

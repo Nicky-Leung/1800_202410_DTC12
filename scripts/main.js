@@ -91,6 +91,7 @@ function readTechItemDB() {
             let docId = doc.id;
             let name = doc.data().name;
             let price = doc.data().price;
+
             try {
                 var description = await fetchDescriptionFromWikipedia(doc.data().name);
             } catch (error) {
