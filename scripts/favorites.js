@@ -25,7 +25,7 @@ function fetchFavorites() {
                     itemContainer.innerHTML = `
                         <h2>${itemData.name}</h2>
                         <a href="item_page.html" style="text-decoration: none; color: inherit;">
-                            <img style="max-width:200px" src="images/${itemData.code}.jpg" alt="Item Image">
+                            <img style="max-width:200px" src="${itemData.imageUrl}" alt="Item Image">
                             <p>Price: ${itemData.price}</p>
                             <p>Description: ${itemData.description}</p>
                         </a>

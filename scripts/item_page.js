@@ -14,12 +14,12 @@ function show_item() {
 
 
     // Retrieve item data from Firestore
-   
-            // Item document found, retrieve imageUrl
-            
 
-            // Add HTML content for the item
-            card.innerHTML = `
+    // Item document found, retrieve imageUrl
+
+
+    // Add HTML content for the item
+    card.innerHTML = `
             <br>
             <br>
             <div class="container-fluid" id="item-information">
@@ -41,13 +41,13 @@ function show_item() {
                 </div>  
             </div>
             `;
-        
 
-        // Add the card to the page
-        card_container.append(card)
+
+    // Add the card to the page
+    card_container.append(card)
 
 }
-  
+
 // Get the price of the item from local storage
 
 
@@ -132,6 +132,7 @@ function addToFavorites() {
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
     var price_history = localStorage.getItem('price_history')
+    var imageUrl = localStorage.getItem('imageUrl');
 
 
     // Check if the item is already in favorites
@@ -148,7 +149,8 @@ function addToFavorites() {
                 price: price,
                 description: description,
                 code: code,
-                price_history: price_history
+                price_history: price_history,
+                imageUrl: imageUrl
             })
                 .then(function (docRef) {
                     console.log("Item added to favorites with ID: ", docRef.id);
