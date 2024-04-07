@@ -21,9 +21,12 @@ function renderItem(item) {
     const itemElement = document.createElement("div");
     itemElement.classList.add("item");
     itemElement.innerHTML = `
-        <h3>${item.itemName}</h3>
-        <p>Price: ${item.itemPrice}</p>
-        <p>Description: ${item.itemDescription}</p>
+        <h2>${item.itemName}</h2>
+        <a href="item_page.html" style="text-decoration: none; color: inherit;">
+            <img style="max-width:200px" src="${item.imageUrl}" alt="Item Image">
+            <p>Price: ${item.itemPrice}</p>
+            <p>Description: ${item.itemDescription}</p>
+        </a>
     `;
     const itemContainer = document.getElementById("itemContainer");
     itemContainer.appendChild(itemElement);
@@ -34,7 +37,6 @@ function renderItem(item) {
         localStorage.setItem('code', item.itemCode);
         localStorage.setItem('price_history', item.price_history);
         window.location.href = 'item_page.html';
-
     });
 }
 
