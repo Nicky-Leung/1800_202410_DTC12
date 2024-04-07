@@ -6,7 +6,8 @@ firebase.auth().onAuthStateChanged((user) => {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const item = doc.data();
-                    renderItem(item);
+                    id = doc.id;
+                    renderItem(item, id );
                 });
             })
             .catch((error) => {
@@ -17,7 +18,7 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
-function renderItem(item) {
+function renderItem(item, docId) {
     const itemElement = document.createElement("div");
     itemElement.classList.add("item");
     itemElement.innerHTML = `
@@ -42,6 +43,8 @@ function renderItem(item) {
         localStorage.setItem('review', item.review);
         localStorage.setItem('condition', item.condition);
         localStorage.setItem('value', item.value);
+        localStorage.setItem('docID', docId);
+        localStorage.setItem('imageUrl', item.imageUrl);
         window.location.href = 'item_page.html';
     });
 }

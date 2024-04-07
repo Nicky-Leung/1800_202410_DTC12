@@ -5,17 +5,18 @@ function show_item() {
     var description = localStorage.getItem('description');
     var code = localStorage.getItem('code');
     var docid = localStorage.getItem('docId');
+    var imageUrl = localStorage.getItem('imageUrl');
 
     // Create HTML content for the item
     card_container = document.getElementById("item-information");
     card_container.innerHTML = "";
     card = document.createElement("div");
 
+
     // Retrieve item data from Firestore
-    db.collection("items").doc(docid).get().then(function (doc) {
-        if (doc.exists) {
+   
             // Item document found, retrieve imageUrl
-            var imageUrl = doc.data().imageUrl;
+            
 
             // Add HTML content for the item
             card.innerHTML = `
@@ -40,13 +41,13 @@ function show_item() {
                 </div>  
             </div>
             `;
-        }
+        
 
         // Add the card to the page
         card_container.append(card)
-    })
-}
 
+}
+  
 // Get the price of the item from local storage
 
 

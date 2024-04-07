@@ -150,6 +150,7 @@ function readTechItemDB() {
                 localStorage.setItem('value', value);
                 localStorage.setItem('condition', condition);
                 localStorage.setItem('review', review);
+                localStorage.setItem('imageUrl', image);
                 window.location.href = 'item_page.html';
 
 
