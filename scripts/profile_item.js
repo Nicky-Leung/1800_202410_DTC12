@@ -25,7 +25,7 @@ function renderItem(item) {
         <h2>${item.itemName}</h2>
         <a href="item_page.html" style="text-decoration: none; color: inherit;">
             <img style="max-width:200px" src="${item.imageUrl}" alt="Item Image">
-            <p>Price: ${item.itemPrice}</p>
+            <p style="font-weight: bold;">Current price: ${item.itemPrice}</p>
             <p>Description: ${item.itemDescription}</p>
         </a>
     </div>
