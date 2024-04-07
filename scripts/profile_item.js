@@ -57,17 +57,19 @@ function renderItem(item, docId) {
         window.location.href = 'item_page.html';
     });
 }
-
 function deleteItem(docId, itemElement) {
     // Retrieve the reference to the item document in Firestore
     const currentUser = firebase.auth().currentUser.uid;
     const itemRef = db.collection("users").doc(currentUser).collection("profile_items").doc(docId);
+    const globalItemRef = db.collection("items").doc(docId);
 
-    // Delete the document
-    itemRef.delete()
+    // Delete the document from Firestore and items collection
+    Promise.all([
+        itemRef.delete(),
+        globalItemRef.delete()
+    ])
         .then(() => {
-            console.log("Item successfully deleted!");
-            // Remove the item from the DOM
+            console.log("Item successfully deleted from Firestore and 'items' collection!");
             itemElement.remove();
         })
         .catch((error) => {
