@@ -29,7 +29,7 @@ function show_item() {
             <div class= "m-4" style="display: flex; justify-content: space-around;">
                 <a href="https://www.ebay.com/sch/i.html?_nkw=${name}" target="_blank"><button type="button" class="btn btn-primary"> Ebay</button></a>
                 <a href="https://www.facebook.com/marketplace/104034516300688/search?query=${name}" target="_blank"><button type="button" class="btn btn-primary">FB Marketplace</button></a>
-                <a href= "existing_items_edit.html"><button type="button" class="btn btn-primary">Edit</button></a>
+                <a  href= "existing_items_edit.html"><button type="button" class="btn btn-primary" style="background-color: #FEB734; color: black">Edit</button></a>
             </div>
         </div>  
     </div>
