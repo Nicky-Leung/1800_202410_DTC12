@@ -6,8 +6,8 @@ firebase.auth().onAuthStateChanged((user) => {
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const item = doc.data();
-                    id = doc.id;
-                    renderItem(item, id );
+                    const docId = doc.id; // Retrieve the document ID
+                    renderItem(item, docId);
                 });
             })
             .catch((error) => {
@@ -29,10 +29,19 @@ function renderItem(item, docId) {
             <p style="font-weight: bold;">Current price: ${item.price}</p>
             <p>Description: ${item.description}</p>
         </a>
+        <button class="delete-btn btn btn-warning btn-lg mb-4">Delete Item</button>
     </div>
 `; //added div favorited item for the css
     const itemContainer = document.getElementById("itemContainer");
     itemContainer.appendChild(itemElement);
+
+    // Event listener for the delete button
+    itemElement.querySelector(".delete-btn").addEventListener("click", (event) => {
+        event.stopPropagation(); // Prevents the click event from triggering the parent element's click event
+        deleteItem(docId, itemElement); // Pass itemElement reference to deleteItem function
+    });
+
+    // Event listener for item click
     itemElement.addEventListener("click", () => {
         localStorage.setItem('name', item.name);
         localStorage.setItem('price', item.price);
@@ -48,4 +57,22 @@ function renderItem(item, docId) {
         window.location.href = 'item_page.html';
     });
 }
+function deleteItem(docId, itemElement) {
+    // Retrieve the reference to the item document in Firestore
+    const currentUser = firebase.auth().currentUser.uid;
+    const itemRef = db.collection("users").doc(currentUser).collection("profile_items").doc(docId);
+    const globalItemRef = db.collection("items").doc(docId);
 
+    // Delete the document from Firestore and items collection
+    Promise.all([
+        itemRef.delete(),
+        globalItemRef.delete()
+    ])
+        .then(() => {
+            console.log("Item successfully deleted from Firestore and 'items' collection!");
+            itemElement.remove();
+        })
+        .catch((error) => {
+            console.error("Error deleting item:", error);
+        });
+}
