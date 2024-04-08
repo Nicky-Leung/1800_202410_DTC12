@@ -114,39 +114,36 @@ function readTechItemDB() {
             let condition = doc.data().condition;
             let review = doc.data().review;
             let image = doc.data().imageUrl
-            console.log(review)
 
             // create a new card for each doc in the database with unique price and name 
             card_container = document.getElementById("card-container");
             card = document.createElement("div");
             card.className = "card";
-            card.innerHTML = `<div class="text-decoration-none text-dark" >
-                    <div class="card-body">
-                        <div class="container" >
-                            <div class="row">
-                                <div class="col text-left-start">
-                                   <h1 id='name' class="">${name}
-                                   </h1>
-                                        <br>
-                                        <br>
-                                        <br>
-                                        <h5 id = 'price' class="card-title">Current Price: ${price}</h5>
-                                </div>
-                                <image src="${image}" class="card-img-top col"
-                                    style="height:20vh; width:20vh">
-                                </image>
-                            </div>
-                        </div>
-                        <p id = "description" class="card-text">${description}</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                       
-                            </div>
-                    </div>        
-            </div>`
+            card.innerHTML = `
+    <div class="text-decoration-none text-dark">
+        <div class="card-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h1 id='name' class="">${name}</h1>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <h5 id="price" class="card-title mt-2">Current Price: ${price}</h5>
+                    </div>
+                    <div class="col">
+                        <image src="${image}" class="card-img-top" style="height:20vh; width:20vh"></image>
+                    </div>
+                </div>
+                <p id = "description" class="card-text mt-4">${description}</p>
+                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
+        </div>
+    </div>`;
 
-                ;
             card.addEventListener('click', function () {
-
                 localStorage.setItem('name', name);
                 localStorage.setItem('price', price);
                 localStorage.setItem('description', description);
@@ -159,13 +156,12 @@ function readTechItemDB() {
                 localStorage.setItem('review', review);
                 localStorage.setItem('imageUrl', image);
                 window.location.href = 'item_page.html';
-
-
             });
             card_container.append(card)
         })
     });
 }
+
 
 
 // Find the closest parent element 
