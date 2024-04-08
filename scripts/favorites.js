@@ -36,6 +36,7 @@ function fetchFavorites() {
                         localStorage.setItem("description", itemData.description);
                         localStorage.setItem("code", itemData.code);
                         localStorage.setItem("price_history", itemData.price_history);
+                        localStorage.setItem("imageUrl", itemData.imageUrl)
                         window.location.href = 'item_page.html';
 
                     });

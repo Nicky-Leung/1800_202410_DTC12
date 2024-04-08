@@ -41,11 +41,11 @@ function renderItem(item, docId) {
                     </div>
                 </div>
                 <p id="description" class="card-text mt-4">${item.description}</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
             </div>
         </div>
     </div>
-    <button class="delete-btn btn btn-warning btn-lg mb-4">Delete Item</button>
+    <br>
+    <button class="delete-btn btn btn-warning btn-lg mb-4 mx-2">Delete Item</button>
 </div>
 
 `; //added div favorited item for the css
