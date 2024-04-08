@@ -58,21 +58,40 @@ function renderItem(item, docId) {
     });
 }
 function deleteItem(docId, itemElement) {
-    // Retrieve the reference to the item document in Firestore
+    // Retrieve the reference to the item document in Firestore from the user's profile items collection
     const currentUser = firebase.auth().currentUser.uid;
     const itemRef = db.collection("users").doc(currentUser).collection("profile_items").doc(docId);
-    const globalItemRef = db.collection("items").doc(docId);
 
-    // Delete the document from Firestore and items collection
-    Promise.all([
-        itemRef.delete(),
-        globalItemRef.delete()
-    ])
-        .then(() => {
-            console.log("Item successfully deleted from Firestore and 'items' collection!");
-            itemElement.remove();
-        })
-        .catch((error) => {
-            console.error("Error deleting item:", error);
-        });
+    // Retrieve the item data to access the code field
+    itemRef.get().then((doc) => {
+        if (doc.exists) {
+            const itemData = doc.data();
+            const itemCode = itemData.code;
+
+            itemRef.delete().then(() => {
+                console.log("Item successfully deleted from the user's profile items collection!");
+                itemElement.remove();
+                alert("Item has been deleted.");
+            }).catch((error) => {
+                console.error("Error deleting item from the user's profile items collection:", error);
+            });
+
+            // Now, delete the item from the global items collection using the item code
+            db.collection("items").where("code", "==", itemCode).get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    doc.ref.delete().then(() => {
+                        console.log("Global item successfully deleted!");
+                    }).catch((error) => {
+                        console.error("Error deleting global item:", error);
+                    });
+                });
+            }).catch((error) => {
+                console.error("Error retrieving global item:", error);
+            });
+        } else {
+            console.log("Item document not found in the user's profile items collection.");
+        }
+    }).catch((error) => {
+        console.error("Error retrieving item document from the user's profile items collection:", error);
+    });
 }
