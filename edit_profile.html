@@ -132,7 +132,7 @@
             var uid = user.uid; // Get UID
             // If no new name, no new bio, and no new image
             if (!newName.trim() && !newBio.trim() && !document.getElementById('mypic-input').files[0]) {
-                alert("No new name, no new bio, and no new image!");
+                alert("Please ensure that at least one field has been changed!");
                 return; // Do nothing
             }
             // Prepare update object
