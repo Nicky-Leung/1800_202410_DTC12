@@ -130,9 +130,9 @@
             // Get current user
             var user = firebase.auth().currentUser;
             var uid = user.uid; // Get UID
-            // If newName and newBio are empty, retain existing name and bio
-            if (!newName.trim() && !newBio.trim()) {
-                alert("Name and Bio is empty!");
+            // If no new name, no new bio, and no new image
+            if (!newName.trim() && !newBio.trim() && !document.getElementById('mypic-input').files[0]) {
+                alert("No new name, no new bio, and no new image!");
                 return; // Do nothing
             }
             // Prepare update object
@@ -177,6 +177,7 @@
             }
         }
     </script>
+
 
 </body>
 
