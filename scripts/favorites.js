@@ -23,12 +23,29 @@ function fetchFavorites() {
 
                     // Populate page with favourite items 
                     itemContainer.innerHTML = `
-                        <h2>${itemData.name}</h2>
-                        <a href="item_page.html" style="text-decoration: none; color: inherit;">
-                            <img style="max-width:200px" src="${itemData.imageUrl}" alt="Item Image">
-                            <p>Price: ${itemData.price}</p>
-                            <p>Description: ${itemData.description}</p>
-                        </a>
+                            <div class="text-decoration-none text-dark">
+                                <div class="card-body">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <h1 id='name' class="">${itemData.name}</h1>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <br>
+                                                <h5 id="price" class="card-title mt-2">Current Price: ${itemData.price}</h5>
+                                            </div>
+                                            <div class="col">
+                                                <img src="${itemData.imageUrl}" class="card-img-top mt-2" style="max-width:200px;">
+                                            </div>
+                                        </div>
+                                        <p id="description" class="card-text mt-4">${itemData.description}</p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
             `;
                     itemContainer.addEventListener("click", function () {
                         localStorage.setItem("name", itemData.name);
