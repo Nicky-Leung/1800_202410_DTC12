@@ -53,7 +53,7 @@ function displaySearchResults(query) {
                                     <div class="col text-left-start">
                                         <h1 id="name">${name}</h5>
                                         <br><br><br>
-                                        <h5 class="card-title">Current Price: ${price}</h5>
+                                        <h5 class="card-title">Current Price: $${price}</h5>
                                     </div>
                                     <img src=${image}" class="card-img-top col favorited-item-img" style="height:20vh; width:20vh">
                                 </div>

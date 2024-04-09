@@ -123,7 +123,7 @@ function readTechItemDB() {
                                         <br>
                                         <br>
                                         <br>
-                                        <h5 id = 'price' class="card-title">Current Price: ${price}</h5>
+                                        <h5 id = 'price' class="card-title">Current Price: $${price}</h5>
                                 </div>
                                 <image src="${image}" class="card-img-top col"
                                     style="height:20vh; width:20vh">
