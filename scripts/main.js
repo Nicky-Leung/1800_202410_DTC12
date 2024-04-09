@@ -63,13 +63,19 @@ async function writeTechItemDB(max) {
 
 
 // Get description of item from wikipedia 
-function fetchDescriptionFromWikipedia(itemName) {
-    // Construct url that points to wiki summary of the item 
+// Function to fetch description from Wikipedia or fallback to Firestore description
+function fetchDescriptionFromWikipedia(itemName, description) {
+    // Construct URL that points to wiki summary of the item 
     let apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${itemName}`;
     // Retrieve data from wiki API
     return fetch(apiUrl)
         // Extract JSON data, throw error if the data is not found
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
         .then(data => {
             if (data.extract) {
                 return data.extract;
@@ -80,9 +86,10 @@ function fetchDescriptionFromWikipedia(itemName) {
         // Catch any errors in fetching or processing data
         .catch(error => {
             console.error("Error fetching description from Wikipedia:", error);
-            return `This is a ${itemName}.`;
+            return description; // Return the description from Firestore collection
         });
 }
+
 
 function readTechItemDB() {
     //define a variable for the collection you want to read from Firestore
@@ -107,7 +114,6 @@ function readTechItemDB() {
             let condition = doc.data().condition;
             let review = doc.data().review;
             let image = doc.data().imageUrl
-            console.log(review)
 
             // create a new card for each doc in the database with unique price and name 
             card_container = document.getElementById("card-container");
@@ -137,9 +143,7 @@ function readTechItemDB() {
                     </div>        
             </div>`
 
-                ;
             card.addEventListener('click', function () {
-
                 localStorage.setItem('name', name);
                 localStorage.setItem('price', price);
                 localStorage.setItem('description', description);
@@ -152,13 +156,12 @@ function readTechItemDB() {
                 localStorage.setItem('review', review);
                 localStorage.setItem('imageUrl', image);
                 window.location.href = 'item_page.html';
-
-
             });
             card_container.append(card)
         })
     });
 }
+
 
 
 // Find the closest parent element 

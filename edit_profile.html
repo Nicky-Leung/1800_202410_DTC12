@@ -37,30 +37,45 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="./styles/style.css">
 
+    <style>
+        /* Custom CSS for black and gold theme */
+        body {
+            background-color: #2a2a2a;
+            color: #d49d40;
+        }
+
+        /* Adjust image preview size */
+        #profile-container img {
+            max-width: 200px;
+            max-height: 200px;
+            width: auto;
+            height: auto;
+        }
+    </style>
+
 </head>
 
 <body>
 
     <!-- navbar -->
-    <nav id="navbarPlaceholder"></nav>
     <div class="d-flex justify-content-start mt-3">
         <a href="profile.html">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="44"
-                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none" stroke-linecap="round"
+                height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d49d40" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                 <path d="M5 12l14 0" />
                 <path d="M5 12l4 4" />
                 <path d="M5 12l4 -4" />
             </svg>
-            </svg>
         </a>
-
     </div>
-
+    <br>
+    <br>
+    <br>
     <!-- main -->
     <div class="container">
-        <h1>User Profile</h1>
+        <h1>Edit User Profile</h1>
         <form>
             <fieldset class="mb-3" id="personalInfoFields">
                 <div class="form-group py-5">
@@ -73,15 +88,16 @@
                     <label>Name</label>
                     <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                 </div>
+                <br>
+                <br>
                 <div class="form-group">
                     <label>Bio</label>
                     <input type="text" id="schoolInput" class="form-control" placeholder="Enter your bio">
                 </div>
             </fieldset>
             <div class="d-flex justify-content-end mt-5">
-                <button type="button" class="btn btn-secondary" onclick="editUserInfo()">Edit</button>
                 <span style="width: 10px"></span>
-                <button type="button" class="btn btn-info" onclick="saveUserInfo()">Save</button>
+                <button type="button" class="btn btn-warning" onclick="saveUserInfo()">Save</button>
             </div>
         </form>
     </div>
@@ -94,10 +110,7 @@
     <script src="./scripts/prof.js"></script>
     <script src="./scripts/authentication.js"></script>
 
-
-
     <!-- update firebase with new name and bio -->
-
     <script>
         // Function to preview selected image
         function previewImage(event) {
@@ -114,11 +127,24 @@
             // Get entered name and bio from form
             var newName = document.getElementById('nameInput').value;
             var newBio = document.getElementById('schoolInput').value;
-            // Get selected image file
-            var file = document.getElementById('mypic-input').files[0];
             // Get current user
             var user = firebase.auth().currentUser;
             var uid = user.uid; // Get UID
+            // If no new name, no new bio, and no new image
+            if (!newName.trim() && !newBio.trim() && !document.getElementById('mypic-input').files[0]) {
+                alert("Please ensure that at least one field has been changed!");
+                return; // Do nothing
+            }
+            // Prepare update object
+            var updateObj = {};
+            if (newName) {
+                updateObj.name = newName;
+            }
+            if (newBio) {
+                updateObj.bio = newBio;
+            }
+            // Get selected image file
+            var file = document.getElementById('mypic-input').files[0];
             // If a new image is selected
             if (file) {
                 // Upload image to Firebase Storage
@@ -129,11 +155,8 @@
                     // Get image URL
                     uploadTask.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                         // Update the document in 'users' collection with new name, bio, and image URL
-                        firebase.firestore().collection('users').doc(uid).update({
-                            name: newName,
-                            bio: newBio,
-                            profileImageUrl: downloadURL
-                        }).then(function () {
+                        updateObj.profileImageUrl = downloadURL;
+                        firebase.firestore().collection('users').doc(uid).update(updateObj).then(function () {
                             console.log("Document successfully updated!");
                             // Redirect to profile after saving
                             window.location.href = "profile.html";
@@ -144,10 +167,7 @@
                 });
             } else {
                 // If no new image is selected, update only name and bio
-                firebase.firestore().collection('users').doc(uid).update({
-                    name: newName,
-                    bio: newBio
-                }).then(function () {
+                firebase.firestore().collection('users').doc(uid).update(updateObj).then(function () {
                     console.log("Document successfully updated!");
                     // Redirect to profile after saving
                     window.location.href = "profile.html";
@@ -157,6 +177,7 @@
             }
         }
     </script>
+
 
 </body>
 
