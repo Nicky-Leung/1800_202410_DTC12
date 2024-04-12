@@ -31,9 +31,9 @@ Here are some known bugs:
 
 ## 6. Features for Future
 What we'd like to build in the future:
-* ...
-* ...
-* ...
+* Google lens support to quickly add items
+* Community features
+* Longer time scale on graphs 
 	
 ## 7. Contents of Folder
 Content of the project folder:

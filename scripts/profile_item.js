@@ -18,6 +18,7 @@ firebase.auth().onAuthStateChanged((user) => {
     }
 });
 
+// render the item on the profile page
 function renderItem(item, docId) {
     const itemElement = document.createElement("div");
     itemElement.classList.add("item");
@@ -58,7 +59,7 @@ function renderItem(item, docId) {
         deleteItem(docId, itemElement); // Pass itemElement reference to deleteItem function
     });
 
-    // Event listener for item click
+    // set the local storage to the clicked on item for item page to handle
     itemElement.addEventListener("click", () => {
         localStorage.setItem('name', item.name);
         localStorage.setItem('price', item.price);

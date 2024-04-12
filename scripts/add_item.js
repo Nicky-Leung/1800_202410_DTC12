@@ -1,3 +1,10 @@
+/**
+ * Fills the stars based on the selected star index.
+ * 
+ * @param {HTMLElement} star - The star element that was clicked.
+ * @param {number} index - The index of the selected star.
+ * @param {NodeList} stars - The list of all star elements.
+ */
 function fillstars(star, index, stars) {
     star.addEventListener("click", function () {
         for (let i = 0; i <= index; i++) {
@@ -11,7 +18,13 @@ function fillstars(star, index, stars) {
     )
 };
 
-// count the amount of filled stars in the review
+
+/**
+ * Counts the number of stars in an array of elements.
+ * 
+ * @param {Array} stars - The array of elements to count stars from.
+ * @returns {number} The number of stars found in the array.
+ */
 function countstars(stars) {
     let count = 0
     stars.forEach(star => {
@@ -34,7 +47,12 @@ userPriceStars.forEach(fillstars)
 // Get reference to Firebase storage
 var storageRef = firebase.storage().ref();
 
-// Upload image to Firebase storage
+
+/**
+ * Uploads an image file to the storage and returns a Promise that resolves to the download URL of the uploaded image.
+ * @param {File} file - The image file to upload.
+ * @returns {Promise<string>} A Promise that resolves to the download URL of the uploaded image.
+ */
 function uploadImage(file) {
     var imageName = file.name;
     var imageRef = storageRef.child('item_images/' + imageName); // Store the images in "item_images" folder
@@ -43,7 +61,13 @@ function uploadImage(file) {
         .catch(error => console.error('error uploading image:', error));
 }
 
-// Function to add the item to both collections
+
+/**
+ * Adds an item to the collections.
+ * 
+ * @param {Object} itemData - The data of the item to be added.
+ * @returns {Promise<Object>} - A promise that resolves to an object containing references to the added items.
+ */
 async function addItemToCollections(itemData) {
     // Add item to the 'items' collection
     const itemsCollectionRef = await db.collection("items").add(itemData);

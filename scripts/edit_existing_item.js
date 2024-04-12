@@ -1,5 +1,5 @@
 
-//fill the stars visually based on the index of the star clicked
+
 docID = localStorage.getItem('docId')
 
 

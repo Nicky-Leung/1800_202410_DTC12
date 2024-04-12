@@ -1,3 +1,6 @@
+/**
+ * Displays the item information on the page.
+ */
 function show_item() {
     // Get item information from local storage
     var name = localStorage.getItem('name');
@@ -54,6 +57,9 @@ function show_item() {
 // Get the price of the item from local storage
 
 
+/**
+ * Displays a chart for item information.
+ */
 function show_chart() {
     // Create chart for item infomration
 
@@ -181,12 +187,14 @@ function addToFavorites() {
     });
 }
 
-// Toggle heart colour when clicked
+
+/**
+ * Toggles the fill color of a heart icon.
+ */
 function toggleFill() {
     var heartPath = document.getElementById("heartPath");
     var currentFill = heartPath.getAttribute("fill");
     // If heart is not filled, add fill
-    // If not filled, add fill
     if (currentFill === "none") {
         heartPath.setAttribute("fill", "red");
     } else {
