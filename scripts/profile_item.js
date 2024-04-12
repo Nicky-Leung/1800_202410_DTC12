@@ -72,7 +72,7 @@ function renderItem(item, docId) {
         localStorage.setItem('value', item.value);
         localStorage.setItem('docID', docId);
         localStorage.setItem('imageUrl', item.imageUrl);
-        window.location.href = 'item_page.html';
+        window.location.href = '../secondary_pages/item_page.html';
     });
 }
 function deleteItem(docId, itemElement) {

@@ -76,7 +76,7 @@ function displaySearchResults(query) {
                     localStorage.setItem('review', review);
                     localStorage.setItem('condition', condition);
                     localStorage.setItem('value', value);
-                    window.location.href = 'item_page.html';
+                    window.location.href = '../secondary_pages/item_page.html';
                 });
                 card_container.appendChild(card);
             }

@@ -40,9 +40,9 @@ var uiConfig = {
   signInFlow: 'popup',
   signInSuccessUrl: 'main.html',
   signInOptions: [
-   
+
     firebase.auth.EmailAuthProvider.PROVIDER_ID
-    
+
   ],
 
 };
