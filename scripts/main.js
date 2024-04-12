@@ -1,6 +1,5 @@
 /**
  * Updates the value, review, and condition of items in the database.
- * @returns {Promise<void>} A promise that resolves when the update is complete.
  */
 async function updateItem() {
     // Update value of item in database
@@ -22,7 +21,6 @@ async function updateItem() {
  * Writes tech items to the database.
  * 
  * @param {number} max - The maximum number of items to write.
- * @returns {Promise<void>} - A promise that resolves when the items are written to the database.
  */
 async function writeTechItemDB(max) {
     // Create mock data and their prices 
@@ -76,10 +74,11 @@ async function writeTechItemDB(max) {
 
 /**
  * Fetches the description of an item from Wikipedia API.
- * If the description is found, it is returned. Otherwise, the description from Firestore collection is returned.
+ * 
  *
  * @param {string} itemName - The name of the item to fetch the description for.
  * @param {string} description - The default description from Firestore collection.
+ * @description If the description is found, it is returned. Otherwise, the description from Firestore collection is returned.
  * @returns {Promise<string>} - A promise that resolves when the description of the item is returned.
  */
 function fetchDescriptionFromWikipedia(itemName, description) {
