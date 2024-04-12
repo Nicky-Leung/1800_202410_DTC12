@@ -113,7 +113,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
         .then(function (ref) {
             console.log("Item added with ID to items collection: ", ref.itemsCollectionRef.id);
             console.log("Item added with ID to profile_items subcollection: ", ref.profileItemsCollectionRef.id);
-            window.location.href = "profile.html";
+            window.location.href = "../main_pages/profile.html";
         })
         .catch(function (error) {
             console.error("Error adding item: ", error);
