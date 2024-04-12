@@ -38,40 +38,6 @@ What we'd like to build in the future:
 ## 7. Contents of Folder
 Content of the project folder:
 
-```
- Top level of project folder: 
-├── .gitignore               # Git ignore file
-├── index.html               # landing HTML file, this is what users see when you come to url
-└── README.md
-
-It has the following subfolders and files:
-├── .git                     # Folder for git repo
-├── images                   # Folder for images
-    /blah.jpg                # Acknowledge source
-├── scripts                  # Folder for scripts
-    /add_item.js     
-    /authentication.js    
-    /add_item.js    
-    /chart.js    
-    /favorites.js    
-    /firebaseAPI_DTC12.js
-    /item_page.js
-    /logout.js
-    /navbar.js
-    /prof.js
-    /profile_item.js
-    /script.js
-    /search.js
-    /skeleton.js
-
-├── styles                   # Folder for styles
-    /style.css                # 
-
-
-
-```
-
-
 
 ```
 1800_202410_DTC12
