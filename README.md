@@ -72,3 +72,67 @@ It has the following subfolders and files:
 ```
 
 
+
+```
+1800_202410_DTC12
+
+├─ README.md
+├─ images
+│  ├─ 5137C009_EOSR7_RFS_18150.jpg
+│  ├─ Midas_brand.jpg
+│  ├─ amazonechodot.jpg
+│  ├─ applewatchseries7.jpg
+│  ├─ bosequietcomfort35ii.jpg
+│  ├─ canoneosm50markii.jpg
+│  ├─ dellxps13.jpg
+│  ├─ djimavicair2.jpg
+│  ├─ drink2.jpg
+│  ├─ googlepixel6.jpg
+│  ├─ goprohero10black.jpg
+│  ├─ hpspectrex360.jpg
+│  ├─ ipadpro.jpg
+│  ├─ iphone13.jpg
+│  ├─ logictechmxmaster3.jpg
+│  ├─ logo.jpg
+│  ├─ macbookpro.jpg
+│  ├─ microsoftsurfacepro7.jpg
+│  ├─ nintendoswitch.jpg
+│  ├─ oculusquest2.jpg
+│  ├─ prof.png
+│  ├─ rokustreamingstick+.jpg
+│  ├─ samsunggalaxys21.jpg
+│  ├─ sonyplaystation5.jpg
+│  └─ wdmypassport.jpg
+├─ main_pages
+│  ├─ favorites.html
+│  ├─ index.html
+│  ├─ item_page.html
+│  ├─ main.html
+│  └─ profile.html
+├─ scripts
+│  ├─ add_item.js
+│  ├─ authentication.js
+│  ├─ edit_existing_item.js
+│  ├─ favorites.js
+│  ├─ item_page.js
+│  ├─ logout.js
+│  ├─ main.js
+│  ├─ navbar.js
+│  ├─ prof.js
+│  ├─ profile_item.js
+│  ├─ search.js
+│  └─ skeleton.js
+├─ secondary_pages
+│  ├─ about.html
+│  ├─ add_item.html
+│  ├─ edit_profile.html
+│  ├─ existing_items_edit.html
+│  └─ search.html
+├─ styles
+│  └─ style.css
+└─ templates
+   ├─ footer.html
+   ├─ indextemplate.html
+   └─ navbar.html
+
+```
