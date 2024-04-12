@@ -1,4 +1,6 @@
-
+/*
+* Fetch the user's favorites from firebase and display them on the page.
+*/
 function fetchFavorites() {
     firebase.auth().onAuthStateChanged(user => {
         // If a user is logged in:

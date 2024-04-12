@@ -276,12 +276,3 @@ function getNameFromAuth() {
 }
 
 getNameFromAuth()
-
-// test fetchDescriptionFromWikipedia, delete later
-fetchDescriptionFromWikipedia("iPhone 13")
-    .then(description => {
-        console.log("Description for iPhone 13:", description);
-    })
-    .catch(error => {
-        console.error("Error fetching description:", error);
-    });

@@ -2,7 +2,13 @@
 
 docID = localStorage.getItem('docId')
 
-
+/**
+ * Fills the stars based on the selected star index.
+ * 
+ * @param {HTMLElement} star - The clicked on star element.
+ * @param {number} index -  Index of the clicked star.
+ * @param {NodeList} stars - List of star elements.
+ */
 function fillstars(star, index, stars) {
     star.addEventListener("click", function () {
         for (let i = 0; i <= index; i++) {
@@ -16,7 +22,12 @@ function fillstars(star, index, stars) {
     )
 };
 
-// count the amount of filled stars in the review
+/**
+ * Counts the number of stars in an array of elements.
+ * 
+ * @param {Array} stars - The array of elements to count stars from.
+ * @returns {number} The number of stars found in the array.
+ */
 function countstars(stars) {
     let count = 0
     stars.forEach(star => {

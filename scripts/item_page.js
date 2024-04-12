@@ -134,6 +134,9 @@ function show_chart() {
     });
 }
 
+/**
+* Adds an item to the favorites collection in Firestore.
+*/
 function addToFavorites() {
     // Retrieve item details
     var name = localStorage.getItem('name');
