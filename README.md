@@ -75,8 +75,12 @@ It has the following subfolders and files:
 
 ```
 1800_202410_DTC12
+ Top level of project folder: 
+├── .gitignore               # Git ignore file
+├── index.html               # landing HTML file, this is what users see when you come to url
+└── README.md
 
-├─ README.md
+It has the following subfolders and files:
 ├─ images
 │  ├─ 5137C009_EOSR7_RFS_18150.jpg
 │  ├─ Midas_brand.jpg
