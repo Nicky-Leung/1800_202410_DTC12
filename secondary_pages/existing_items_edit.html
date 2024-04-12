@@ -42,7 +42,7 @@
 <body style="background-color: #2a2a2a; color: #d49d40;">
     <!--Can improve later ig-->
     <!-- navbar -->
-
+    <!-- back button -->
     <div class="d-flex justify-content-start mt-3">
         <a href="../main_pages/profile.html">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="44"
@@ -65,12 +65,13 @@
                 <!-- Item form -->
                 <form id="addItemForm">
 
+                    <!-- price input -->
                     <div class="mb-3">
                         <label for="itemPrice" class="form-label">Price</label>
                         <input type="number" class="form-control" id="itemPrice" name="itemPrice"
                             placeholder="Enter price" required>
                     </div>
-
+                    <!-- starts for reviews -->
                     <div class="mb-3">
                         <label for="itemReview" class="form-label">User Reviews</label>
                         <div class="card-body" id="userReview">
@@ -103,9 +104,11 @@
                         </div>
                     </div>
                     
+                    <!-- back button -->
                     <a class="button"
                         style="color: #d49d40; text-decoration: none; vertical-align: middle; border-radius: 5px; background-color: transparent; border: 1px solid #d49d40; margin-right: 10px; padding: 5px 14px;"
                         href="../main_pages/profile.html">Back</a>
+                    <!-- submit button -->
                     <button type="submit" class="btn"
                         style="background-color: #d49d40; vertical-align: middle;">Submit</button>
 

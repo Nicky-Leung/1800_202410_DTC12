@@ -77,6 +77,7 @@
     <div class="container">
         <h1>Edit User Profile</h1>
         <form>
+            <!-- image upload -->
             <fieldset class="mb-3" id="personalInfoFields">
                 <div class="form-group py-5">
                     <div id="profile-container">
@@ -84,17 +85,20 @@
                     </div>
                     <input id="mypic-input" type="file" onchange="previewImage(event)">
                 </div>
+                <!-- edit name -->
                 <div class="form-group">
                     <label>Name</label>
                     <input type="text" id="nameInput" class="form-control" placeholder="Enter your name">
                 </div>
                 <br>
                 <br>
+                <!-- edit bio -->
                 <div class="form-group">
                     <label>Bio</label>
                     <input type="text" id="schoolInput" class="form-control" placeholder="Enter your bio">
                 </div>
             </fieldset>
+            <!-- save button -->
             <div class="d-flex justify-content-end mt-5">
                 <span style="width: 10px"></span>
                 <button type="button" class="btn btn-warning" onclick="saveUserInfo()">Save</button>
