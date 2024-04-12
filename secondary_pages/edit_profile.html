@@ -59,7 +59,7 @@
 
     <!-- navbar -->
     <div class="d-flex justify-content-start mt-3">
-        <a href="profile.html">
+        <a href="../main_pages/profile.html">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-narrow-left" width="44"
                 height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#d49d40" fill="none" stroke-linecap="round"
                 stroke-linejoin="round">
@@ -159,7 +159,7 @@
                         firebase.firestore().collection('users').doc(uid).update(updateObj).then(function () {
                             console.log("Document successfully updated!");
                             // Redirect to profile after saving
-                            window.location.href = "profile.html";
+                            window.location.href = "../main_pages/profile.html";
                         }).catch(function (error) {
                             console.error("Error updating document: ", error);
                         });
@@ -170,7 +170,7 @@
                 firebase.firestore().collection('users').doc(uid).update(updateObj).then(function () {
                     console.log("Document successfully updated!");
                     // Redirect to profile after saving
-                    window.location.href = "profile.html";
+                    window.location.href = "../main_pages/profile.html";
                 }).catch(function (error) {
                     console.error("Error updating document: ", error);
                 });
