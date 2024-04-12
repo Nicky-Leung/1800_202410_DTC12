@@ -82,7 +82,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
             console.log("Item added");
             // Redirect to profile page after item is added
             
-            window.location.href = "main.html";
+            window.location.href = "../main_pages/main.html";
         })
         .catch(function (error) {
             console.error("Error adding item: ", error);

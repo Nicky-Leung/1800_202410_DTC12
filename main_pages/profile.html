@@ -83,7 +83,7 @@
     <div class=" container">
         <div class="row justify-content-center mt-3">
             <div class="col-4 text-center">
-                <a href="add_item.html">
+                <a href="../secondary_pages/add_item.html">
                     <button type="button" class="btn btn-warning btn-lg mb-4">Add item <svg
                             xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-plus" width="24"
                             height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none"
@@ -107,12 +107,12 @@
     <footer id="footerPlaceholder"></footer>
 
     <!-- scripts -->
-    <script src="./scripts/firebaseAPI_DTC12.js"></script>
-    <script src="./scripts/skeleton.js"></script>
-    <script src="./scripts/prof.js"></script>
-    <script src="./scripts/authentication.js"></script>
-    <script src="./scripts/profile_item.js"></script>
-    <script src="./scripts/logout.js"></script>
+    <script src="../scripts/firebaseAPI_DTC12.js"></script>
+    <script src="../scripts/skeleton.js"></script>
+    <script src="../scripts/prof.js"></script>
+    <script src="../scripts/authentication.js"></script>
+    <script src="../scripts/profile_item.js"></script>
+    <script src="../scripts/logout.js"></script>
 
     <script>
         function fetchUserInfo() {
@@ -134,7 +134,7 @@
                                 document.getElementById('profile-image').src = data.profileImageUrl;
                             } else {
                                 // Set a default image if no profile image URL is found
-                                document.getElementById('profile-image').src = 'images/default-profile-image.jpg';
+                                document.getElementById('profile-image').src = '../images/default-profile-image.jpg';
                             }
                         } else {
                             console.log("No such document!");
