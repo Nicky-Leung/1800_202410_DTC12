@@ -1,12 +1,17 @@
+/**
+ * Function gets the profile items for the authenticated user if authenticated, and listens for changes.
+ * @param {firebase.User} user - The authenticated user object.
+ */
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         const currentUser = user.uid;
         console.log("Current user ID:", user.uid);
+        // items added by user will be stored to subcollection called profile_items
         db.collection("users").doc(currentUser).collection("profile_items").get()
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const item = doc.data();
-                    const docId = doc.id; // Retrieve the document ID
+                    const docId = doc.id;
                     renderItem(item, docId);
                 });
             })
@@ -19,9 +24,15 @@ firebase.auth().onAuthStateChanged((user) => {
 });
 
 // render the item on the profile page
+/**
+ * Function to render an item on the profile page.
+ * @param {Object} item - The item data to render.
+ * @param {string} docId - The ID of the document in Firestore.
+ */
 function renderItem(item, docId) {
     const itemElement = document.createElement("div");
     itemElement.classList.add("item");
+    // This would create the item card of the user added item in their profile page.
     itemElement.innerHTML = `
        <div class="favorited-item">
     <div class="text-decoration-none text-dark">
@@ -75,17 +86,24 @@ function renderItem(item, docId) {
         window.location.href = '../main_pages/item_page.html';
     });
 }
+
+/**
+ * Function that delete an item from the user's profile items collection and the  items collection.
+ * @param {string} docId - The ID of the document to delete from Firestore.
+ * @param {HTMLElement} itemElement - The HTML element representing the item to delete.
+ */
 function deleteItem(docId, itemElement) {
-    // Retrieve the reference to the item document in Firestore from the user's profile items collection
+    // get the ref to the item document in Firestore from user's profile_items subcollection
     const currentUser = firebase.auth().currentUser.uid;
     const itemRef = db.collection("users").doc(currentUser).collection("profile_items").doc(docId);
 
-    // Retrieve the item data to access the code field
+    // get the item data to access the code field
     itemRef.get().then((doc) => {
         if (doc.exists) {
             const itemData = doc.data();
             const itemCode = itemData.code;
 
+            // delete item from user's profile items collection (removes item in profile page)
             itemRef.delete().then(() => {
                 console.log("Item successfully deleted from the user's profile items collection!");
                 itemElement.remove();
@@ -94,7 +112,7 @@ function deleteItem(docId, itemElement) {
                 console.error("Error deleting item from the user's profile items collection:", error);
             });
 
-            // Now, delete the item from the global items collection using the item code
+            // delete item from the global items collection using the item code (removes it from the item collection which displays items in main page)
             db.collection("items").where("code", "==", itemCode).get().then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     doc.ref.delete().then(() => {

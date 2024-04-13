@@ -83,6 +83,7 @@ async function addItemToCollections(itemData) {
 document.getElementById("addItemForm").addEventListener("submit", async function (event) {
     event.preventDefault();
 
+    // Retrieve item data from the form (user)inputs
     var name = document.getElementById("itemName").value;
     var price = document.getElementById("itemPrice").value;
     var description = document.getElementById("itemDescription").value;
@@ -90,6 +91,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     var condition = countstars(userConditionStars);
     var value = countstars(userPriceStars);
 
+    // get selected image file and uploads it.
     var imageFile = document.getElementById("itemImage").files[0];
     var imageUrl = await uploadImage(imageFile);
     const today = new Date();
@@ -97,7 +99,7 @@ document.getElementById("addItemForm").addEventListener("submit", async function
     // Create an object with the item data
     var itemData = {
         name: name,
-        code: name.replace(/\s/g, '').toLowerCase(),
+        code: name.replace(/\s/g, '').toLowerCase(), // generate a code based on the item name (item name lowecased)
         price: price,
         price_history: [price],
         update_history: [formattedDate],
