@@ -54,7 +54,7 @@ function displaySearchResults(query) {
                 card.style.padding = "10px";
                 card.style.marginBottom = "15px";
                 card.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.1)";
-
+                // display cards showcasing the name, price, image and description
                 card.innerHTML = `<div class="text-decoration-none text-dark">
                     <div class="card mb-3">
                         <div class="card-body">
@@ -76,7 +76,7 @@ function displaySearchResults(query) {
 
                 // Add event listener to each card for item details
                 card.addEventListener('click', function () {
-                    // Store item details in local storage and redirect to item page
+                    // Store item details in local storage and redirect to item page if clicked
                     localStorage.setItem('name', name);
                     localStorage.setItem('price', price);
                     localStorage.setItem('description', description);
