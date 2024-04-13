@@ -14,14 +14,18 @@ List technologies (with version numbers), API's, icons, fonts, images, media or 
 * HTML, CSS, JavaScript
 * Bootstrap 5.0 (Frontend library)
 * Firebase 8.0 (BAAS - Backend as a Service)
-* ...
+* Wikipedia API
+* Google fonts API for material icons
 
 ## 4. Complete setup/installion/usage
 State what a user needs to do when they come to your project.  How do others start using your code or application?
 Here are the steps ...
 * If a user already has an account, they can log in with a valid email address and password.  
 * If a user does not have an account, they can sign up with their name, email, and password.
-* ...
+* Once logged in, a user can begin looking at the items displayed in the home page (main.html).
+* They can search for items, upload a new item, edit a preexisting item.
+* Users can also add items to their favourites, which are saved so they can view them whenever.
+* Users can also edit their profile and change their name, bio, and profile photo.
 
 ## 5. Known Bugs and Limitations
 Here are some known bugs:
@@ -49,8 +53,8 @@ Content of the project folder:
 It has the following subfolders and files:
 ├─ images
 │  ├─ 5137C009_EOSR7_RFS_18150.jpg
-│  ├─ Midas_brand.jpg
-│  ├─ amazonechodot.jpg
+│  ├─ Midas_brand.jpg        # our logo for Midas
+│  ├─ amazonechodot.jpg      # all subsequent images are taken from amazon and ebay unless otherwise noted
 │  ├─ applewatchseries7.jpg
 │  ├─ bosequietcomfort35ii.jpg
 │  ├─ canoneosm50markii.jpg
@@ -68,17 +72,16 @@ It has the following subfolders and files:
 │  ├─ microsoftsurfacepro7.jpg
 │  ├─ nintendoswitch.jpg
 │  ├─ oculusquest2.jpg
-│  ├─ prof.png
+│  ├─ prof.png             # profile icon
 │  ├─ rokustreamingstick+.jpg
 │  ├─ samsunggalaxys21.jpg
 │  ├─ sonyplaystation5.jpg
 │  └─ wdmypassport.jpg
 ├─ main_pages
-│  ├─ favorites.html
-│  ├─ index.html
-│  ├─ item_page.html
-│  ├─ main.html
-│  └─ profile.html
+│  ├─ favorites.html       # this is where favourite items are displayed
+│  ├─ item_page.html       # page for each item where item information is displayed
+│  ├─ main.html            # home page
+│  └─ profile.html         # profile page
 ├─ scripts
 │  ├─ add_item.js
 │  ├─ authentication.js
@@ -93,15 +96,15 @@ It has the following subfolders and files:
 │  ├─ search.js
 │  └─ skeleton.js
 ├─ secondary_pages
-│  ├─ about.html
-│  ├─ add_item.html
-│  ├─ edit_profile.html
-│  ├─ existing_items_edit.html
-│  └─ search.html
+│  ├─ about.html                 # contains basic information about the application
+│  ├─ add_item.html              # page for adding new item
+│  ├─ edit_profile.html          # page for editing user's profile
+│  ├─ existing_items_edit.html   # page for editing existing item
+│  └─ search.html                # search results are displayed here
 ├─ styles
-│  └─ style.css
+│  └─ style.css                    # CSS stylesheet
 └─ templates
-   ├─ footer.html
+   ├─ footer.html       
    ├─ indextemplate.html
    └─ navbar.html
 
