@@ -107,7 +107,11 @@ function fetchDescriptionFromWikipedia(itemName, description) {
         });
 }
 
-
+/**
+ * Reads tech items from the database and displays them on the main page.
+ * 
+ * @description This function reads from the database and creates cards for each item to display on main page
+ */
 function readTechItemDB() {
     // Define a variable for the collection to be read from Firestore
     db.collection("items").get().then(items => {
@@ -192,57 +196,6 @@ function findParentBySelector(elm, selector) {
     return current;
 }
 
-function readFilteredTechItemDB(itemName) {
-    // Define a variable for the collection you want to read from Firestore
-    db.collection("items").get().then(items => {
-        items.forEach(doc => {
-            let name = doc.data().name;
-            let price = doc.data().price;
-            let description = doc.data().description;
-            let code = doc.data().code;
-
-            // Check if the item name matches the user input
-            if (name.toLowerCase().replace(/\s/g, '') === itemName.toLowerCase().replace(/\s/g, '')) {
-                // Get the container for the cards
-                let card_container = document.getElementById("search-container");
-
-                // Ensure the container exists before appending the card
-                if (card_container) {
-                    // Create a new card for each doc in the database with unique price and name 
-                    let card = document.createElement("div");
-                    card.className = "card";
-                    card.innerHTML = `<div class="text-decoration-none text-dark ">
-                        <div class="card mb-3">
-                            <div class="card-body">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col text-left-start">
-                                            <h1 id='name'>${name}</h5>
-                                                <br>
-                                                <br>
-                                                <br>
-                                                <h5 id='price' class="card-title">Current Price: ${price}</h5>
-                                        </div>
-                                        <image src="images/${code}.jpg" class="card-img-top col"
-                                            style="height:20vh; width:20vh">
-                                        </image>
-                                    </div>
-                                </div>
-                                <p id="description" class="card-text">${description}</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                    </div>`;
-                    card_container.append(card);
-                } else {
-                    console.error("Card container not found.");
-                }
-            }
-        });
-    });
-}
-
-
-readFilteredTechItemDB();
 readTechItemDB(); //call the function to read from the database
 
 
