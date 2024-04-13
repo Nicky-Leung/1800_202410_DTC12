@@ -138,7 +138,7 @@ function show_chart() {
 * Adds an item to the favorites collection in Firestore.
 */
 function addToFavorites() {
-    // Retrieve item details
+    // Retrieve item details and store them in variables
     var name = localStorage.getItem('name');
     var price = localStorage.getItem('price');
     var description = localStorage.getItem('description');
@@ -200,6 +200,7 @@ function toggleFill() {
     // If heart is not filled, add fill
     if (currentFill === "none") {
         heartPath.setAttribute("fill", "red");
+        // If heart is filled, remove fill
     } else {
         heartPath.setAttribute("fill", "none");
     }

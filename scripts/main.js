@@ -5,7 +5,7 @@ async function updateItem() {
     // Update value of item in database
     await db.collection("items").get().then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-
+            // Generate values for review, condition, and value
             doc.ref.update({
                 review: Math.ceil(Math.random() * 5),
                 condition: Math.ceil(Math.random() * 5),
@@ -109,7 +109,7 @@ function fetchDescriptionFromWikipedia(itemName, description) {
 
 
 function readTechItemDB() {
-    //define a variable for the collection you want to read from Firestore
+    // Define a variable for the collection to be read from Firestore
     db.collection("items").get().then(items => {
         items.forEach(async doc => {
             let docId = doc.id;
@@ -119,8 +119,10 @@ function readTechItemDB() {
             try {
                 var description = await fetchDescriptionFromWikipedia(doc.data().name);
             } catch (error) {
+                // use firebase description if error occurs when fetching from wiki 
                 var description = doc.data().description;
             }
+            // if description is null then use firebase description
             if (description == null) {
                 description = doc.data().description;
             }
@@ -159,7 +161,7 @@ function readTechItemDB() {
                             </div>
                     </div>        
             </div>`
-            // set local storate to the item details onclick for item page
+            // set local storage to the item details onclick for item page
             card.addEventListener('click', function () {
                 localStorage.setItem('name', name);
                 localStorage.setItem('price', price);
