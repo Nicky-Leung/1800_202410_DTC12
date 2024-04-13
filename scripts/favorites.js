@@ -49,6 +49,7 @@ function fetchFavorites() {
                             </div>
                         </div>
             `;
+                    // set local storage for the item clicked
                     itemContainer.addEventListener("click", function () {
                         localStorage.setItem("name", itemData.name);
                         localStorage.setItem("price", itemData.price);
