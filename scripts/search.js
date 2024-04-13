@@ -1,3 +1,7 @@
+/**
+ * when DOM is loaded, this is called
+ * takes search query parameter from the URL and displays it
+ */
 document.addEventListener('DOMContentLoaded', function () {
     const urlParams = new URLSearchParams(window.location.search);
     const searchQuery = urlParams.get('q');
@@ -5,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function () {
     displaySearchResults(searchQuery);
 });
 
+/**
+ * Display search results for the given query.
+ * @param {string} query search query
+ */
 function displaySearchResults(query) {
     // Get the container for the search results
     let card_container = document.getElementById("search-container");
@@ -21,8 +29,10 @@ function displaySearchResults(query) {
             if (name.toLowerCase().includes(query.toLowerCase())) {
                 let price = doc.data().price;
                 try {
+                    // Fetch description from Wikipedia
                     var description = await fetchDescriptionFromWikipedia(doc.data().name);
                 } catch (error) {
+                    // if error/ couldnt fetch, use default description
                     var description = doc.data().description;
                 }
                 if (description == null) {
@@ -66,6 +76,7 @@ function displaySearchResults(query) {
 
                 // Add event listener to each card for item details
                 card.addEventListener('click', function () {
+                    // Store item details in local storage and redirect to item page
                     localStorage.setItem('name', name);
                     localStorage.setItem('price', price);
                     localStorage.setItem('description', description);
